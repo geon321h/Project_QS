@@ -9,26 +9,29 @@
     <script type="text/javascript">
     var naver_id_login = new naver_id_login("xv3XT9V8S0QZOPJ_FpTI", "http://localhost:8081/Project_QS_NamGeon/member/naver_callback.html");
     // 접근 토큰 값 출력
-    console.log(naver_id_login.oauthParams.access_token);
     const access_token = naver_id_login.oauthParams.access_token;
     // 네이버 사용자 프로필 조회
     naver_id_login.get_naver_userprofile("naverSignInCallback()");
     // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
     let userInfo;
     function naverSignInCallback() {
-        console.log(naver_id_login.getProfileData('id'));
         const id = naver_id_login.getProfileData('id');
-        console.log(naver_id_login.getProfileData('nickname'));
         const nickname = naver_id_login.getProfileData('nickname');
-        console.log(naver_id_login.getProfileData('gender'));
         const gender_naver = naver_id_login.getProfileData('gender');
+        const mobile = naver_id_login.getProfileData('mobile');
+        const name = naver_id_login.getProfileData('name');
+        // console.log(naver_id_login.oauthParams.access_token);
+        // console.log(naver_id_login.getProfileData('id'));
+        // console.log(naver_id_login.getProfileData('nickname'));
+        // console.log(naver_id_login.getProfileData('gender'));
+        // console.log(naver_id_login.getProfileData('mobile'));
         let gender = "X";
         if(gender_naver == 'M'){
             gender = '남';
         }else if(gender_naver == 'F'){
             gender = '여';
         }
-        opener.sendData(access_token,id,nickname,gender);
+        opener.sendData(access_token,id,nickname,gender,mobile,name);
         window.close();
     }
 
