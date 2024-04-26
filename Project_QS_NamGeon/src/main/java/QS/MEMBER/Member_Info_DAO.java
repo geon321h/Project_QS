@@ -130,6 +130,35 @@ public class Member_Info_DAO {
 		return mdto;
 	}
 	
+	public String findPw(String user_email, String user_name) {
+		String passwd = null;
+		String sql = "select password from MEMBER_INFO where email =? and upper(user_name)=upper(?)";
+		
+		try {
+			
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, user_email);
+			ps.setString(2, user_name);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				passwd = rs.getString("password");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return passwd;
+	}
+	
 	public Member_Info_DTO getMemberBean(ResultSet rs) throws SQLException {
 		Member_Info_DTO mdto = new Member_Info_DTO();
 		
@@ -143,6 +172,37 @@ public class Member_Info_DAO {
 		mdto.setBan(rs.getString("ban"));
 		
 		return mdto;
+	}
+	
+	public boolean duplicateCheckEmail(String email) {
+		boolean flag = false;
+		String sql = "select * from member_info where email = ? and LOGIN_TYPE is null";
+		try {
+			
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				flag = true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+				if (rs!=null) {
+					rs.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return flag;
 	}
 	
 }
