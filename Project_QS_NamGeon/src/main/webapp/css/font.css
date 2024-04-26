@@ -48,3 +48,10 @@
 	font-weight: 400;
 	src: url('../assets/font/NanumSquareNeo-dEb.ttf');
 }
+
+@font-face {
+	font-family: 'NanumSquare_H';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../assets/font/NanumSquareNeo-eHv.ttf');
+}
