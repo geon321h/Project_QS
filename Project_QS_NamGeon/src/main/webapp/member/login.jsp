@@ -65,8 +65,8 @@
                 </div>
             </form>
             <div class="login_bottomlink my-3 text-center">
-                <a href="/member" class="px-2">회원가입</a> 
-                <a href="/member" class="px-2">비밀번호를 잊으셨나요?</a>
+                <a href="register.jsp?url=<%=url%>" class="px-2">회원가입</a> 
+                <a href="password_find.jsp?url=<%=url%>" class="px-2">비밀번호를 잊으셨나요?</a>
             </div>
             <div class="login_sns m-auto py-3">
                 <div id="naver_id_login" style="display: none;"></div>
@@ -81,17 +81,7 @@
             </div>
         </div>
     </div>
-    <footer class="container-fluid mt-auto">
-        <div class="container text-white"  id="footer">
-            <div class=" gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center pt-4">
-                <p class="mt-1 pt-1">
-                    교육센터 : 쌍용 강북 교육센터 | 2차프로젝트 Project_QS | 만든이 : 남건 <br>
-                    관리자번호 : 010-5097-xxxx | E-mail : geon21h@naver.com<br>
-                    Copyright © 2024 Geon, Inc. All Rights Reserved.
-                </p>
-            </div>
-        </div>
-    </footer>
+    <jsp:include page="../include/member_footer.html"/>
 
     <script type="text/javascript">
 
