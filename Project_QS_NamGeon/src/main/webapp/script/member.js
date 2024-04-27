@@ -1,3 +1,5 @@
+
+
 $(function(){
 
     // 로그인 및 비밀번호 찾기 페이지 //
@@ -11,23 +13,6 @@ $(function(){
         $('.error_msg_wrap').empty();
     })
    
-
-    // 회원가입 페이지 //
-    
-    let regax_name = /[`~!@#$%^&*|\\\'\";:\/?]/;
-    $('input[name="user_name"]').keydown(function(){
-        $('#name_msg').empty();
-    })
-    $('input[name="user_name_register"]').keyup(function(){
-        let name = $('input[name="user_name_register"]').val();
-        if(regax_name.test(name)){
-            $('input[name="user_name_register"]').focus();
-            $('#name_msg').html("특수문자를 제외한 문자를 입력해주세요.");
-        }
-        $('input[name="user_name_register"]').val($.trim(name));
-    })
-
-
 });
 
 function login_check() {
@@ -103,45 +88,3 @@ function passwd_find() {
 
 }
 
-function register_check() {
-
-    let blank_pass = false;
-    let duplicate_pass = false;
-    duplicate(blank_pass,duplicate_pass);
-
-    
-    if(name==""){
-        $('input[name="user_name_register"]').focus();
-        $('#name_msg').html("이름을 입력해주세요.");
-        blank_pass = true; 
-    }
-    
-    if(blank_pass || duplicate_pass){
-        return false;
-    }
-
-}
-
-function duplicate(blank_pass,duplicate_pass){
-
-    $.ajax({
-        url : "duplicate_proc.jsp",
-        data : ({
-            user_email : $('input[name="user_email_register"]').val(),
-        }),
-        async: false,
-        success : function(data) {
-            
-            if($('input[name="user_email_register"]').val()==""){
-                $('input[name="user_email"]').focus();
-                $('#email_msg').html("이메일을 입력해주세요.");
-                blank_pass = true; 
-            }else if($.trim(data) == "exist"){
-                $('input[name="user_email_register"]').focus();
-                $('#email_msg').html("이미 사용중인 이메일입니다.");
-                duplicate_pass = true; 
-            }
-        }
-    });
-
-}
