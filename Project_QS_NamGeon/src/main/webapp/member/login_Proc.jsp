@@ -67,9 +67,12 @@
 	        	session.setAttribute("member_key", mdto.getMember_key());
 	        	session.setAttribute("user_name", mdto.getUser_name());
 	        	// System.out.println("로그인");
+				
+				if (mdto.getEmail().equals("admin")) {
+					url = request.getContextPath()+"/admin/main.jsp";
+				}
 	    	}
     	}
-    	
     	
     %>
     
