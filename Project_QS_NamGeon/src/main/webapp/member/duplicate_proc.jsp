@@ -1,3 +1,4 @@
+<%@page import="QS.MEMBER.Member_Info_DAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 	
