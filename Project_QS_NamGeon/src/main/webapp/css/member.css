@@ -216,6 +216,13 @@ body {
     font-family: 'NanumSquare_R';
     font-weight: 300;
 }
+
+.register #phone_number::-webkit-inner-spin-button {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
 .register .gender_box {
     display: flex;
     border: 1px solid #ddd;
