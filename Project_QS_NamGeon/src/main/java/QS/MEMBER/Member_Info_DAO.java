@@ -74,12 +74,16 @@ public class Member_Info_DAO {
 		int cnt=-1;
 			
 		String sql = "INSERT INTO MEMBER_INFO(MEMBER_KEY,EMAIL,PASSWORD,USER_NAME,PHONE_NUMBER,GENDER,LOGIN_TYPE) "
-				+ "VALUES(MEMBER_SEQ.NEXTVAL,?,?||MEMBER_SEQ.CURRVAL,?,?,?,?)";
+				+ "VALUES(MEMBER_SEQ.NEXTVAL,?,?,?,?,?,?)";
 
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, mdto.getEmail());
-			ps.setString(2, mdto.getLogin_type());
+			if(mdto.getPassword() == null) {
+				ps.setString(2, mdto.getLogin_type());
+			}else {
+				ps.setString(2, mdto.getPassword());
+			}
 			ps.setString(3, mdto.getUser_name());
 			ps.setString(4, mdto.getPhone_number());
 			ps.setString(5, mdto.getGender());
