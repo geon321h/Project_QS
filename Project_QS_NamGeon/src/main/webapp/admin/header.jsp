@@ -5,10 +5,13 @@
     	request.setCharacterEncoding("UTF-8");
     	
     	String email = (String)session.getAttribute("email");
-    	//System.out.println("email: "+email);
-    	
+    	//System.out.println("user_name: "+user_name);
+    	if(email == null){
+    		email = "admin";    		
+    	}
     	
     %>
+    
     <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -23,6 +26,7 @@
 
     <!-- css 페이지 -->
     <link href="<%=request.getContextPath()%>/css/header_footer_style.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/css/admin.css" rel="stylesheet" />
 
     <!-- 아이콘 부트스트랩 -->
     <link rel="stylesheet" 
@@ -33,41 +37,26 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
     crossorigin="anonymous"></script>
 
+    <!-- javascript admin -->
+    <script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="<%=request.getContextPath()%>/script/admin.js"></script>
 </head>
 <body>
-    
-<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 " id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 " id="mainNav_admin">
     <div class="container px-0 ">
         <a class="navbar-brand" href="main.html">LOGO</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse " id="navbarResponsive">
-            <ul class="navbar-nav ms-5 my-2 my-lg-0 ">
-                <li class="nav-item"><a class="nav-link" href="#">퀴즈</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">설문조사</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">내 페이지</a></li>
-                <%
-                if(email !=null){
-	                if(email.equals("admin")){
-	                	%>
-		                <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/main.jsp">관리자 홈</a></li>
-	                	<%
-	                }
-                }
-                %>
+            <ul class="navbar-nav ms-5 my-2 my-lg-0">
+                <li class="nav-item mx-3"><a class="nav-link" href="member_admin.jsp">멤버관리</a></li>
+                <li class="nav-item mx-3"><a class="nav-link" href="#">퀴즈관리</a></li>
+                <li class="nav-item mx-3"><a class="nav-link" href="#">설문조사 관리</a></li>
+                <li class="nav-item mx-3"><a class="nav-link" href="#">문의 관리</a></li>
+                <li class="nav-item mx-3"><a class="nav-link" href="<%=request.getContextPath()%>/main.jsp">사용자 홈</a></li>
             </ul>
             <ul class="nav nav-pills ms-auto">
-                <li class="nav-item me-2"><a href="#" class="nav-link active" id="create_nav" aria-current="page">만들기</a></li>
-                <%
-                	if(email != null){
-                		%>
-			                <li class="nav-item"><a href="<%=request.getContextPath()%>/member/logout.jsp?url=<%=request.getRequestURI()%>" class="nav-link">로그아웃</a></li>
-                		<%
-                	}else{
-                		%>
-			                <li class="nav-item"><a href="<%=request.getContextPath()%>/member/login.jsp?url=<%=request.getRequestURI()%>" class="nav-link">로그인</a></li>
-                		<%
-                	}
-                %>
+	                <li class="nav-item"><a href="<%=request.getContextPath()%>/member/logout.jsp" class="nav-link">로그아웃</a></li>
               </ul>
         </div>
     </div>

@@ -1,35 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuestionS:Quiz and Survey</title>
-    
-    <!-- css 부트스트랩 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-    rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
-    crossorigin="anonymous"/>
 
-    <!-- css 페이지 -->
-    <link href="css/header_footer_style.css" rel="stylesheet" />
-
-    <!-- 아이콘 부트스트랩 -->
-    <link rel="stylesheet" 
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-
-    <!-- javascript 부트스트랩 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
-    crossorigin="anonymous"></script>
-
-</head>
-	<%
-		request.setCharacterEncoding("UTF-8");
-		
-	%>
-<body>
 	<jsp:include page="/include/header.jsp"/>
     <header class="masthead">
         <div class="container px-4 px-lg-5 h-100">
@@ -49,7 +20,4 @@
             </div>
         </div>  
     </header>
-    <jsp:include page="/include/footer.html"/>
-    <script src="script/scripts.js"></script>
-</body>
-</html>
+    <jsp:include page="/include/footer.jsp"/>
