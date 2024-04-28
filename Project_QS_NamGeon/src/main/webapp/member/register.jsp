@@ -34,11 +34,9 @@
 	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 	crossorigin="anonymous"></script>
 
-<!-- javascript sns -->
+<!-- javascript 멤버 -->
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-<!-- javascript 멤버 -->
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/script/register.js"></script>
 
