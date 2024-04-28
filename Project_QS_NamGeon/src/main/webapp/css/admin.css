@@ -1,0 +1,61 @@
+@import 'default_style.css';
+
+#content {
+    min-height: 65vh;
+}
+
+.content {
+    padding-top: 10rem;
+    width: 100%;
+    padding-bottom: 5rem;
+}
+
+.content table  {
+    width: 100%;
+}
+
+.content table th {
+    text-align: center;
+    border: 1px solid #333;
+    padding: 10px 5px;
+    background-color: #B0C4DE;
+    font-size: 0.5rem;
+}
+.content table td {
+    text-align: center;
+    border: 1px solid #333;
+    padding: 12px 5px;
+    font-size: 0.5rem;
+    font-family: 'NanumSquare_R';
+}
+
+.content table #msg_td {
+    text-align: center;
+    border: 1px solid #333;
+    padding: 100px 10px;
+    font-size: 1.2rem;
+}
+
+.content table .ban_td td{
+    color: var(--bs-danger);
+}
+
+@media (min-width: 992px) {
+
+    .content table th {
+        text-align: center;
+        border: 1px solid #333;
+        padding: 20px 10px;
+        font-size: 1rem;
+        background-color: #B0C4DE;
+    }
+
+    .content table td {
+        text-align: center;
+        border: 1px solid #333;
+        padding: 15px 10px;
+        font-size: 1rem;
+        font-family: 'NanumSquare_R';
+    }
+
+}

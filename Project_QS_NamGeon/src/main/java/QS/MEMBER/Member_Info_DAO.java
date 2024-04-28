@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -37,6 +38,38 @@ public class Member_Info_DAO {
 			e1.printStackTrace();
 		}
 		
+	}
+	
+	public ArrayList<Member_Info_DTO> getAllMember() {
+		String sql = "select * from member_info order by member_key asc";
+		ArrayList<Member_Info_DTO> lists = new ArrayList<>();
+		Member_Info_DTO mdto = null;
+		try {
+			
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				mdto = getMemberBean(rs);
+				lists.add(mdto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+				if (rs!=null) {
+					rs.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return lists;
 	}
 	
 	public Member_Info_DTO snsIdCheck(String snsId) {
@@ -162,22 +195,7 @@ public class Member_Info_DAO {
 		
 		return passwd;
 	}
-	
-	public Member_Info_DTO getMemberBean(ResultSet rs) throws SQLException {
-		Member_Info_DTO mdto = new Member_Info_DTO();
-		
-		mdto.setMember_key(rs.getInt("member_key"));
-		mdto.setEmail(rs.getString("email"));
-		mdto.setPassword(rs.getString("password"));
-		mdto.setUser_name(rs.getString("user_name"));
-		mdto.setPhone_number(rs.getString("phone_number"));
-		mdto.setGender(rs.getString("gender"));
-		mdto.setLogin_type(rs.getString("login_type"));
-		mdto.setBan(rs.getString("ban"));
-		
-		return mdto;
-	}
-	
+
 	public boolean duplicateCheckEmail(String email) {
 		boolean flag = false;
 		String sql = "select * from member_info where email = ? and LOGIN_TYPE is null";
@@ -208,5 +226,53 @@ public class Member_Info_DAO {
 		
 		return flag;
 	}
+	
+	public int banMember(String[] rowcheckArr ,String ban) {
+		int cnt = -1;
+		String sql = "update member_info set ban = ? where member_key=? ";
+		for(int i=1;i<rowcheckArr.length;i++) {
+			sql += " or member_key=?";
+		}
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, ban);
+			for(int i=0;i<rowcheckArr.length;i++) {
+				int row = Integer.parseInt(rowcheckArr[i]);
+				ps.setInt(i+2, row);
+			}
+			
+			cnt = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return cnt;
+	}
+	
+	
+	public Member_Info_DTO getMemberBean(ResultSet rs) throws SQLException {
+		Member_Info_DTO mdto = new Member_Info_DTO();
+		
+		mdto.setMember_key(rs.getInt("member_key"));
+		mdto.setEmail(rs.getString("email"));
+		mdto.setPassword(rs.getString("password"));
+		mdto.setUser_name(rs.getString("user_name"));
+		mdto.setPhone_number(rs.getString("phone_number"));
+		mdto.setGender(rs.getString("gender"));
+		mdto.setLogin_type(rs.getString("login_type"));
+		mdto.setBan(rs.getString("ban"));
+		
+		return mdto;
+	}
+	
 	
 }
