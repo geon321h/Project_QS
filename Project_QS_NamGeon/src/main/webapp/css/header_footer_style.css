@@ -151,6 +151,79 @@ header.masthead a.btn{
   }
 }
 
+/***********/
+/** admin **/
+/***********/
+
+#mainNav_admin {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  transition: background-color 0.2s ease;
+}
+
+#mainNav_admin .navbar-brand {
+font-family: 'MaplestoryOTFBold','Katuri','KCC-Ganpan','NanumSquareNeo-Variable';
+font-weight: 700;
+font-size: 2rem;
+color: #212529;
+}
+#mainNav_admin .navbar-nav .nav-item .nav-link {
+color: #6c757d;
+font-family: 'NanumSquare_B';
+font-weight: 400;
+font-size: 1.2rem;
+padding: 0.75rem 0;
+margin-left: 1rem;
+}
+
+#mainNav_admin .nav-pills .nav-item .nav-link {
+color: #6c757d;
+font-family: 'NanumSquare_B';
+font-size: 1rem;
+}
+
+#mainNav_admin .navbar-nav .nav-item .nav-link:hover, #mainNav_admin .navbar-nav .nav-item .nav-link:active {
+color: var(--bs-sub_color);
+}
+#mainNav_admin .navbar-nav .nav-item .nav-link.active {
+color: var(--bs-sub_color) !important;
+}
+@media (min-width: 992px) {
+
+#mainNav_admin {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+}
+#mainNav_admin .navbar-brand {
+  color: #212529;
+}
+#mainNav_admin .navbar-brand:hover {
+  color: var(--bs-sub_color);
+}
+#mainNav_admin .navbar-nav .nav-item .nav-link {
+  color: #212529;
+}
+#mainNav_admin .navbar-nav .nav-item .nav-link:hover {
+  color: var(--bs-sub_color);
+}
+
+#mainNav_admin .nav-pills .nav-item #create_nav {
+  background-color: var(--bs-sub_color);
+  color: white;
+  font-weight: 300;
+}
+#mainNav_admin .nav-pills .nav-item #create_nav:hover {
+  color: var(--bs-sub_color);
+}
+
+#mainNav_admin .nav-pills .nav-item .nav-link {
+  color: #212529;
+}
+#mainNav_admin .nav-pills .nav-item .nav-link:hover {
+  color: var(--bs-sub_color);
+}
+
+}
 
 /**********/
 /** 하단 **/
