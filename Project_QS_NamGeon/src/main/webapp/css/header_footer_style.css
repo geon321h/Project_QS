@@ -8,6 +8,7 @@
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     background-color: #fff;
     transition: background-color 0.2s ease;
+    z-index:900;
 }
 #mainNav .navbar-brand {
   font-family: 'MaplestoryOTFBold','Katuri','KCC-Ganpan','NanumSquareNeo-Variable';
@@ -40,6 +41,7 @@
   #mainNav {
     box-shadow: none;
     background-color: transparent;
+    z-index:900;
   }
   #mainNav .navbar-brand {
     color: rgba(255, 255, 255);
@@ -256,3 +258,26 @@ color: var(--bs-sub_color) !important;
   line-height: 1.2rem;
 }
 
+.modal-bg {
+  display:none;
+  width:100%;
+  height:100%;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index:999;
+}
+
+.modal-wrap {
+  display:none;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:300px;
+  height:300px;
+  background:#fff;
+  z-index:1000;
+}

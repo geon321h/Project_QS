@@ -32,6 +32,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
     crossorigin="anonymous"></script>
+    <script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 </head>
 <body>
@@ -56,7 +58,7 @@
                 %>
             </ul>
             <ul class="nav nav-pills ms-auto">
-                <li class="nav-item me-2"><a href="#" class="nav-link active" id="create_nav" aria-current="page">만들기</a></li>
+                <li class="nav-item me-2"><a href="javascript:popOpen();" class="nav-link active" id="create_nav" aria-current="page">만들기</a></li>
                 <%
                 	if(email != null){
                 		%>
@@ -72,5 +74,11 @@
         </div>
     </div>
 </nav>
+
+<div class="modal-bg" onClick="javascript:popClose();"></div>
+<div class="modal-wrap">
+    modal sample
+    <button class="modal-close" onClick="javascript:popClose();">닫기</button>
+</div>
 
     
