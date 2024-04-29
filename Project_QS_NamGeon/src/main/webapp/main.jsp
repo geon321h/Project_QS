@@ -15,9 +15,10 @@
                         또한 여러 사람들의 생각을 듣고 싶다면 맞춤 설문조사를 만들 수 있어요.<br>
                         지금 바로 여러분의 아이디어를 만들어 보세요!
                     </p>
-                    <a class="btn btn-xl px-5 py-4" href="#">지금 만들기</a>
+                    <a class="btn btn-xl px-5 py-4" href="javascript:login_check();">지금 만들기</a>
                 </div>
             </div>
         </div>  
     </header>
     <jsp:include page="/include/footer.jsp"/>
+	

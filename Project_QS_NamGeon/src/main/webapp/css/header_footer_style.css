@@ -37,6 +37,15 @@
 #mainNav .navbar-nav .nav-item .nav-link.active {
   color: var(--bs-sub_color) !important;
 }
+
+#mainNav .nav-pills .nav-item #create_nav {
+  color: white;
+}
+
+#mainNav .nav-pills .nav-item #create_nav:hover {
+  color: white;
+}
+
 @media (min-width: 992px) {
   #mainNav {
     box-shadow: none;
@@ -71,7 +80,6 @@
   }
   #mainNav .nav-pills .nav-item #create_nav:hover {
     color: var(--bs-main_color);
-    opacity: 0.8;
   }
 
   #mainNav .navbar-nav .nav-item:last-child .nav-link {
@@ -99,9 +107,6 @@
     color: white;
     font-weight: 300;
   }
-  #mainNav.navbar-shrink .nav-pills .nav-item #create_nav:hover {
-    color: var(--bs-sub_color);
-  }
 
   #mainNav.navbar-shrink .nav-pills .nav-item .nav-link {
     color: #212529;
@@ -109,6 +114,7 @@
   #mainNav.navbar-shrink .nav-pills .nav-item .nav-link:hover {
     color: var(--bs-sub_color);
   }
+  
   
 }
 
@@ -258,7 +264,11 @@ color: var(--bs-sub_color) !important;
   line-height: 1.2rem;
 }
 
-.modal-bg {
+/**********/
+/** 팝업 **/
+/**********/
+
+.modal_bg {
   display:none;
   width:100%;
   height:100%;
@@ -270,14 +280,90 @@ color: var(--bs-sub_color) !important;
   z-index:999;
 }
 
-.modal-wrap {
+.modal_wrap {
   display:none;
-  position:absolute;
+  position:fixed;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:300px;
-  height:300px;
   background:#fff;
   z-index:1000;
+  border-radius: 10px;
+}
+
+.modal_wrap i{
+  font-size: 1.5rem;
+  float: right;
+}
+
+.modal_wrap i:hover{
+  color: #6c757d;
+}
+
+.modal_wrap .content_type_area{
+  display: flex;
+  justify-content: center;
+  width: 400px;
+}
+
+.modal_wrap .content_type_area button{
+  padding: 10px 0px;
+  border-radius: 20px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.modal_wrap .content_type_area button:hover {
+  filter: brightness(0.7);
+}
+
+.modal_wrap .content_type_area p {
+  color: white;
+  font-size: 1.3rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.modal_wrap .content_type_area i {
+  font-size: 3rem !important;
+  height: 64px;
+}
+
+.modal_wrap .content_type_area i:hover {
+  color: white;
+}
+
+.modal_wrap .content_type_area img {
+  width: 48px;
+  filter: invert(100%) sepia(0%) saturate(7427%) hue-rotate(54deg) brightness(103%) contrast(114%);
+}
+
+.modal_wrap #quiz_create_btn {
+  width: 45%;
+  background-color: var(--bs-main_color);
+  min-height: 150px;
+}
+
+.modal_wrap #survey_create_btn {
+  width: 45%;
+  background-color: var(--bs-sub_color);
+  min-height: 150px;
+}
+
+/************************/
+/** create 버튼 이벤트 **/
+/************************/
+
+
+.vibration {
+  animation: vibration .12s infinite;
+}
+
+@keyframes vibration {
+  from {
+    transform: rotate(3deg);
+  }
+  to {
+    transform: rotate(-3deg);
+  }
 }

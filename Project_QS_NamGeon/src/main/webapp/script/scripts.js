@@ -1,12 +1,4 @@
-/*!
-* Start Bootstrap - Creative v7.0.7 (https://startbootstrap.com/theme/creative)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-creative/blob/master/LICENSE)
-*/
-//
-// Scripts
-// 
-
+/* 부트스트랩 헤더 테마 */
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
@@ -54,10 +46,12 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
+/* 팝업창 열기/닫기 */
+
 function popOpen() {
 
-    var modalPop = $('.modal-wrap');
-    var modalBg = $('.modal-bg'); 
+    var modalPop = $('.modal_wrap');
+    var modalBg = $('.modal_bg'); 
 
     $(modalPop).show();
     $(modalBg).show();
@@ -65,10 +59,34 @@ function popOpen() {
 }
 
  function popClose() {
-   var modalPop = $('.modal-wrap');
-   var modalBg = $('.modal-bg');
+   var modalPop = $('.modal_wrap');
+   var modalBg = $('.modal_bg');
 
    $(modalPop).hide();
    $(modalBg).hide();
 
+}
+
+
+
+/* create 버튼 이벤트 */
+
+let timeoutId;
+const vibration = (target) => {
+    target.classList.add("vibration");
+    setTimeout(function() {
+      target.classList.remove("vibration");
+    }, 400);
+    timeoutId = setInterval(function() {
+        target.classList.add("vibration");
+        setTimeout(function() {
+          target.classList.remove("vibration");
+        }, 400);
+    }, 1500);
+
+}
+
+const vibration_off = (target) => {
+    clearTimeout(timeoutId);
+    target.classList.remove("vibration");
 }

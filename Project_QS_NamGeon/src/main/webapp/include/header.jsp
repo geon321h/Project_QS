@@ -35,16 +35,35 @@
     <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
+    <!-- 추가 개인 javascript -->
+    <script type="text/javascript">
+        /*  팝업이전에 로그인여부 확인  */
+        function login_check() {
+            
+            if("<%=email%>"=="null"){
+                alert("로그인이 필요한 컨텐츠입니다.");
+                location.href = "<%=request.getContextPath()%>/member/login.jsp?url=<%=request.getRequestURI()%>";
+            }else{
+                popOpen();
+            }
+        }
+
+        /* 팝업을 통한 페이지 이동 */
+        function create_page_move(page){
+            location.href = "<%=request.getContextPath()%>/content/"+page+"/"+page+"_create.jsp";
+        }
+    </script>
+
 </head>
 <body>
     
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 " id="mainNav">
     <div class="container px-0 ">
-        <a class="navbar-brand" href="main.html">LOGO</a>
+        <a class="navbar-brand" href="<%=request.getContextPath()%>/main.jsp">LOGO</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse " id="navbarResponsive">
             <ul class="navbar-nav ms-5 my-2 my-lg-0 ">
-                <li class="nav-item"><a class="nav-link" href="#">퀴즈</a></li>
+                <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/content/quiz/quiz_main.jsp">퀴즈</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">설문조사</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">내 페이지</a></li>
                 <%
@@ -58,7 +77,7 @@
                 %>
             </ul>
             <ul class="nav nav-pills ms-auto">
-                <li class="nav-item me-2"><a href="javascript:popOpen();" class="nav-link active" id="create_nav" aria-current="page">만들기</a></li>
+                <li class="nav-item me-2 .create_nav"><a href="javascript:login_check();" class="nav-link active" id="create_nav" onmouseover="vibration(this)" onmouseleave="vibration_off(this)" aria-current="page">만들기</a></li>
                 <%
                 	if(email != null){
                 		%>
@@ -75,10 +94,21 @@
     </div>
 </nav>
 
-<div class="modal-bg" onClick="javascript:popClose();"></div>
-<div class="modal-wrap">
-    modal sample
-    <button class="modal-close" onClick="javascript:popClose();">닫기</button>
+<div class="modal_bg" onClick="javascript:popClose();"></div>
+<div class="modal_wrap p-3">
+    <div>
+        <i class="modal_close bi bi-x" onClick="javascript:popClose();" ></i>
+    </div>
+    <div class="content_type_area pt-2 pb-4 px-3 text-center">
+        <button class="btn mx-2" id="quiz_create_btn" onclick="create_page_move('quiz')">
+            <p class="pt-3"><img src="<%=request.getContextPath()%>/assets/icon/quiz_icon.png"></img></p>
+            <p class="pt-2">퀴즈</pc>
+        </button>
+        <button class="btn mx-2" id="survey_create_btn" onclick="create_page_move('survey')">
+            <p class="pt-3"><i class="bi bi-file-text"></i></p>
+            <p class="pt-2">설문조사</p>
+        </button>
+    </div>
 </div>
 
     
