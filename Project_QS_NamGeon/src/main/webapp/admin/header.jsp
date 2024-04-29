@@ -45,11 +45,11 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 " id="mainNav_admin">
     <div class="container px-0 ">
-        <a class="navbar-brand" href="main.html">LOGO</a>
+        <a class="navbar-brand" href="<%=request.getContextPath()%>/admin/main.jsp">LOGO</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse " id="navbarResponsive">
             <ul class="navbar-nav ms-5 my-2 my-lg-0">
-                <li class="nav-item mx-3"><a class="nav-link" href="member_admin.jsp">멤버관리</a></li>
+                <li class="nav-item mx-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/member_admin.jsp">멤버관리</a></li>
                 <li class="nav-item mx-3"><a class="nav-link" href="#">퀴즈관리</a></li>
                 <li class="nav-item mx-3"><a class="nav-link" href="#">설문조사 관리</a></li>
                 <li class="nav-item mx-3"><a class="nav-link" href="#">문의 관리</a></li>
