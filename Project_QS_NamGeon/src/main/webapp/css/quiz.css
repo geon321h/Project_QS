@@ -20,6 +20,10 @@ body {
     padding-bottom: 5rem;
 }
 
+/***************/
+/** 퀴즈 메인 **/
+/***************/
+
 #search_area {
     position: relative;
 }
@@ -62,3 +66,121 @@ body {
     background:url('../assets/icon/chevron-down.svg') no-repeat 85% 50%/15px auto;
 }
 
+
+/***************/
+/** 퀴즈 생성 **/
+/***************/
+
+.create_modal_bg {
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index:999;
+}
+
+.create_modal_wrap {
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:#fff;
+    z-index:1000;
+    border-radius: 10px;
+}
+
+.create_modal_wrap .col_split input {
+    width: 100%;
+    border-radius: 10px;
+    min-height: 40px;
+    border: 1px solid #212529;
+    padding: 8px 10px;
+    font-size: 14px;
+    font-family: 'NanumSquare_R';
+    outline-color: var(--bs-main_color);
+}
+
+.create_modal_wrap .col_split textarea {
+    border-radius: 10px;
+    border: 1px solid #212529;
+    padding: 8px 10px;
+    font-size: 14px;
+    font-family: 'NanumSquare_R';
+    resize: none;
+    outline-color: var(--bs-main_color);
+}
+
+.file_box {
+    border: 2px dashed #212529;
+    border-radius: 10px;
+    padding: 35px 10px;
+}
+
+.file_box:hover {
+    border: 2px dashed var(--bs-main_color);
+    color: var(--bs-main_color);
+}
+
+.file_box h4 {
+    font-family: 'NanumSquare_B';
+    font-size: 18px;
+}
+
+.file_box p {
+    font-family: 'NanumSquare_R';
+    font-size: 12px;
+    color: #999;
+}
+
+.file_box i {
+    font-size: 2.2rem;
+}
+
+.file_box_area .image_box {
+    overflow:hidden;
+    display: none;
+    width: 372px;
+    height: 185px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.file_box_area .image_box .thumbnail_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.file_box_area .image_box div {
+    position: absolute;
+    right: 3%;
+    bottom: 3%;
+    display: flex;         
+    justify-content: center;
+    align-items: center; 
+
+}
+
+.file_box_area .image_box i {
+    display: none;
+    border-radius: 50px;
+    background-color: white;
+    font-size: 0.8rem;
+    width: 30px;
+    height: 30px;
+    padding: 6px;
+}
+
+.file_box_area .image_box i:hover {
+    background-color: var(--bs-main_color);
+    color: white;
+}
+
+.content_info_area .error_msg_wrap{
+    color: var(--bs-danger);
+    font-family: 'NanumSquare_R';
+    font-size: 0.9rem;
+}
