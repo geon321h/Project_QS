@@ -5,6 +5,7 @@
     	request.setCharacterEncoding("UTF-8");
     	
     	String email = (String)session.getAttribute("email");
+    	String member_key = (String)session.getAttribute("member_key");
     	//System.out.println("email: "+email);
     	
     	
@@ -57,8 +58,8 @@
 </head>
 <body>
     
-<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 " id="mainNav">
-    <div class="container px-0 ">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container px-0">
         <a class="navbar-brand" href="<%=request.getContextPath()%>/main.jsp">LOGO</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse " id="navbarResponsive">
