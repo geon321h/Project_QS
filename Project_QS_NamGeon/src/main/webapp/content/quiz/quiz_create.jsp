@@ -1,6 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="../../include/header.jsp"/>    
+
+<jsp:useBean id="content_quiz" class="QS.CONTENT.Content_Quiz_bean" scope="session"/>
+<%
+
+	String save = request.getParameter("save");
+
+	if(save==null){
+		content_quiz.resetSaveData();
+	}else{
+		%>
+		<script type="text/javascript">
+            $(function(){
+                pop_content_info_Close();
+            })
+		</script>
+		<%
+	}
+
+%>
+
+
 <script src="<%=request.getContextPath()%>/script/quiz.js"></script>
 <script type="text/javascript">
     /*  팝업이전에 로그인여부 확인  */
@@ -8,16 +29,16 @@
         
         let blank_pass = true;
         blank_pass = content_info_check(blank_pass);
-        if(blank_pass){
-            pop_content_info_Close();
+        if(!blank_pass){
+            return false
         }
-
+        
     }
 </script>
 <div class="create_modal_bg"></div>
 <div class="create_modal_wrap p-3">
-    <div class="content_info_area pt-2 pb-4 px-3 text-center">
-        <form action="" class="text-start p-3 pb-1 mb-0">
+    <div class="content_info_area pt-2 pb-4 px-3 text-center ">
+        <form action="quiz_info_add.jsp?member_key=<%=member_key%>" class="text-start p-3 pb-1 mb-0" method="post"  enctype="multipart/form-data">
             <p class="">퀴즈만들기</p>
             <hr>
             <div class="col_split my-3">
@@ -48,8 +69,15 @@
                     <div class="error_msg_wrap text-start mt-1" id="thumbnail_msg"></div>
                 </div>
             </div>
+            <div class="col_split my-3">
+                <div class="form-check form-switch ps-0">
+                    <p class="form-check-label" for="flexSwitchCheckDefault">공개여부<br>
+                        <input class="form-check-input mt-1 ms-0 mb-4" name="content_public" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    </p>
+                </div>
+            </div>
             <div class="col_split text-center  mt-4">
-                <input type="button" class="btn btn-dark m-auto" onclick="content_check()" id="create_check_btn" value="생성하기">
+                <input type="submit" class="btn btn-dark m-auto" onclick="return content_check()" id="create_check_btn" value="생성하기">
             </div>
         </form>
     </div>
