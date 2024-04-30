@@ -184,3 +184,28 @@ body {
     font-family: 'NanumSquare_R';
     font-size: 0.9rem;
 }
+
+.content_info_area .form-check .form-check-input {
+    width: 45px;
+    border-radius: 50px;
+    min-height: 25px;
+    border: 1px solid #999;
+    padding: 0px;
+}
+
+.content_info_area .form-check .form-check-input:checked{
+    background-color: var(--bs-main_color);
+}
+
+.content_info_area .form-check .form-check-input:checked:focus {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(106, 26, 244, 0.25)
+}
+
+.content_info_area .form-check .form-check-input:focus {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(106, 26, 244, 0.25);
+}
+
+.content_info_area .col_split input.btn{
+    min-height: 50px;
+    font-size: 1rem;
+}
