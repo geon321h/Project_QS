@@ -209,3 +209,38 @@ body {
     min-height: 50px;
     font-size: 1rem;
 }
+
+.container .quiz_content{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.quiz_content div {
+    padding: 0px 10px;
+} 
+
+.quiz_content div div {
+    height: 200px;
+    width: 260px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 1);
+} 
+
+.quiz_content .create_quiz_btn {
+    
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='white' stroke-width='7' stroke-dasharray='5%2c 18' stroke-dashoffset='11' stroke-linecap='square'/%3e%3c/svg%3e");
+    border-radius: 10px;
+}
+
+.quiz_content h4 {
+    font-family: 'NanumSquare_B';
+    font-size: 18px;
+}
+
+.quiz_content i {
+    font-size: 2.2rem;
+}
+

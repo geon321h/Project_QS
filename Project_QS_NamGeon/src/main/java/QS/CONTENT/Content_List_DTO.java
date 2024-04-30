@@ -1,7 +1,5 @@
 package QS.CONTENT;
 
-import java.util.ArrayList;
-
 public class Content_List_DTO {
 
 	private int content_key ;

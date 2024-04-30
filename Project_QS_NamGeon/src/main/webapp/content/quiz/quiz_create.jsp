@@ -104,7 +104,18 @@
     <link href="<%=request.getContextPath()%>/css/quiz.css" rel="stylesheet" />
     
     <div class="container" id="container">
-        <div id="content">
+        <div id="content" class="row g-5 quiz_content">
+
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+                <div class="">Custom column padding</div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+                <div class="create_quiz_btn text-center p-3">
+                    <h4 class="mt-5">문제를 추가하세요!</h4>
+                    <i class="bi bi-plus-circle"></i>
+                </div>
+            </div>
 
         </div>
     </div>
