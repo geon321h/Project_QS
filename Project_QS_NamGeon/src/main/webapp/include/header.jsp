@@ -6,7 +6,7 @@
     	
     	String email = (String)session.getAttribute("email");
     	String member_key = (String)session.getAttribute("member_key");
-    	//System.out.println("email: "+email);
+    	//System.out.println("member_key: "+member_key);
     	
     	
     %>

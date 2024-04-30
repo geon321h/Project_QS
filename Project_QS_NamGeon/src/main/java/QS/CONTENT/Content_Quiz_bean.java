@@ -36,4 +36,12 @@ public class Content_Quiz_bean {
 		quiz_list.clear();
 	}
 	
+	public Content_List_DTO getCL_DTO() {
+		return cl_dto;
+	}
+	
+	public ArrayList<Quiz_List_DTO> getQuiz_List() {
+		return quiz_list;
+	}
+	
 }

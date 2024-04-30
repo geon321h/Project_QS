@@ -1,14 +1,32 @@
+<%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="../../include/header.jsp"/>    
 
 <jsp:useBean id="content_quiz" class="QS.CONTENT.Content_Quiz_bean" scope="session"/>
 <%
-
+	String member_key = (String)session.getAttribute("member_key");
 	String save = request.getParameter("save");
-
+	save = "save";// 퀴즈생성을 위해 임시
 	if(save==null){
-		content_quiz.resetSaveData();
+		if(content_quiz.getCL_DTO().getThumbnail() != null){
+			
+			String configDir = config.getServletContext().getRealPath("/assets/img");
+		 	String fullPath = configDir+"\\"+content_quiz.getCL_DTO().getThumbnail();
+		  	
+ 		 	File file = new File(fullPath);
+		 	if(file.exists()){
+		 		if(file.delete()){
+		 			System.out.println("파일삭제 성공");
+		 		}else{
+		 			System.out.println("파일삭제 실패");
+		 		}
+		 	}else{
+		 			System.out.println("파일없음");
+		 	}
+		}
+ 		content_quiz.resetSaveData();
+		
 	}else{
 		%>
 		<script type="text/javascript">

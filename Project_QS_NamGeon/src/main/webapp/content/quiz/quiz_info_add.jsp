@@ -8,7 +8,7 @@
 	%>
 	<jsp:useBean id="content_quiz" class="QS.CONTENT.Content_Quiz_bean" scope="session"/>
 	<%
-		System.out.println("이동");
+		//System.out.println("이동");
 		String configFolder = "";
 		String saveFolder = "/assets/img";
 	    int maxSize = 1024*1024*5;
@@ -31,7 +31,7 @@
 	    System.out.println("thumbnail:"+multi.getOriginalFileName("thumbnail"));
 	    System.out.println("content_public:"+multi.getParameter("content_public"));
 	    
-	    //content_quiz.saveContentData(multi);
+	    content_quiz.saveContentData(multi);
 	    response.sendRedirect("quiz_create.jsp?save=save");
 	
 	%>

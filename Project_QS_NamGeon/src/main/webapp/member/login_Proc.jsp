@@ -64,7 +64,7 @@
 	    		url = "login.jsp?url="+url;
 	    		msg = "활동정지된 아이디입니다.";
 	    	}else if(mdto.getBan().equals("N")){
-	        	session.setAttribute("member_key", mdto.getMember_key());
+	        	session.setAttribute("member_key", String.valueOf(mdto.getMember_key()));
 	        	session.setAttribute("email", mdto.getEmail());
 	        	session.setAttribute("user_name", mdto.getUser_name());
 	        	// System.out.println("로그인");
