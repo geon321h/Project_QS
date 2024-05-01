@@ -38,10 +38,9 @@ function pop_content_info_Close() {
    let thumbnail;
    $('#thumbnail_file').change(function(){
       thumbnail = this.files[0];
-      //console.log(thumbnail);
+      console.log($('#thumbnail_file').val());
       let reader = new FileReader();
-      reader.readAsDataURL(thumbnail);
-
+      
       reader.onload = function(){
          $('#thumbnail_image_box').show();
          $('#thumbnail_file_box').hide();
@@ -254,7 +253,6 @@ function update_quiz_list(number,type,question,answer,example,image){
       type_2_setting();
       $('#quiz_image_box').show();
       $('#quiz_file_box').hide();
-      console.log(image);
       $('.quiz_image').attr('src', image);
    }else if(type==3){
       let example_arr = example.split(' ');
@@ -269,5 +267,25 @@ function update_quiz_list(number,type,question,answer,example,image){
 
    $('#quiz_list_form').attr("action","quiz_list_update.jsp?number="+number);
    pop_quiz_Open();
+
+}
+
+function info_controller(title,explanation,thumbnail,content_public) {
+
+   var modalPop = $('.create_modal_wrap');
+   var modalBg = $('.create_modal_bg');
+ 
+   $(modalPop).show();
+   $(modalBg).show();
+
+   $('input[name="title"]').val(title);
+   $('textarea[name="explanation"]').val(explanation);
+   if(content_public != ""){
+      $('input[name="content_public"]').prop('checked',true);
+   }
+   $('input[name="title"]').val(title);
+   $('#thumbnail_image_box').show();
+   $('#thumbnail_file_box').hide();
+   $('.thumbnail_image').attr('src', thumbnail);
 
 }

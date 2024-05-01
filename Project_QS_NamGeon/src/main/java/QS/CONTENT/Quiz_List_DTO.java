@@ -8,6 +8,14 @@ public class Quiz_List_DTO {
 	private String image;
 	private String example;
 	private String answer ;
+	private int quiz_type;
+	
+	public int getQuiz_type() {
+		return quiz_type;
+	}
+	public void setQuiz_type(int quiz_type) {
+		this.quiz_type = quiz_type;
+	}
 	
 	public int getQuiz_key() {
 		return quiz_key;

@@ -15,7 +15,7 @@ body {
 }
 
 #content {
-    padding-top: 10rem;
+    padding-top: 8rem;
     width: 100%;
     padding-bottom: 5rem;
 }
@@ -437,3 +437,43 @@ body {
     font-size: 0.8rem;
     padding: 9px 9px;
 }
+
+/* 퀴즈 컨트롤러 */
+
+#quiz_controller {
+    position:fixed;
+    top:75%;
+    right:8%;
+    transform:translate(-50%,-50%);
+    z-index:800;
+}
+
+.controller_btn_box button{
+    display: block;
+    width: 60px;
+    height: 60px;
+    border: 0;
+    border-radius: 50px;
+    margin: 15px 0px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.controller_btn_box button i {
+    font-size: 1.3rem;
+    color: white;
+}
+
+#info_controller_btn{
+    background-color: var(--bs-sub_color);
+}
+
+#insert_controller_btn{
+    background-color: var(--bs-analogous_color);
+}
+
+#delete_controller_btn{
+    background-color: var(--bs-triadic_color);
+}
+
+
+

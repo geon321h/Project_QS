@@ -1,3 +1,4 @@
+<%@page import="QS.CONTENT.Content_List_DTO"%>
 <%@page import="QS.CONTENT.Quiz_List_DTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.io.File"%>
@@ -120,7 +121,6 @@
                     <input type="text" name="question" placeholder="문제를 입력해주세요.(20자)" maxlength="20">
                     <div class="error_msg_wrap text-start mt-1" id="question_msg"></div>
                 </div>
-
                 <div class="col_split my-3">
                     <div id="example_box_area">
                         <p class="m-1">보기</p>
@@ -237,4 +237,25 @@
             </div>
         </div>
     </div>
+    <%
+    	Content_List_DTO cl_dto = content_quiz.getCL_DTO();
+  		String title = cl_dto.getTitle();
+  		String explanation = cl_dto.getExplanation();
+  		String thumbnail = "";
+  		if(cl_dto.getThumbnail() != null){
+  			thumbnail = requestFolder+"/"+cl_dto.getThumbnail();
+  		}
+  		String content_public = "";
+  		if(cl_dto.getContent_public() != null){
+	  		content_public = cl_dto.getContent_public();
+  		}
+    %>
+    <div id="quiz_controller">
+        <div class="controller_btn_box">
+            <button id="info_controller_btn" onclick="info_controller('<%=title%>','<%=explanation%>','<%=thumbnail%>','<%=content_public%>')"><i class="bi bi-info-lg"></i></button>
+            <button id="insert_controller_btn "><i class="bi bi-floppy"></i></button>
+            <button id="delete_controller_btn"><i class="bi bi-x-lg"></i></button>
+        </div>
+    </div>
+
     <jsp:include page="../../include/footer.jsp"/>

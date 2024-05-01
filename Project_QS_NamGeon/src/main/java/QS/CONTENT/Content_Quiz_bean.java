@@ -65,12 +65,12 @@ public class Content_Quiz_bean {
 		}
 		if(!example.trim().equals("")){
 			q_dto.setExample(example.trim());
-		}else {
-			//System.out.println("example비어있음");
-		}
-		
-		if(multi.getOriginalFileName("image")!=null){
+			q_dto.setQuiz_type(3);
+		}else if(multi.getOriginalFileName("image")!=null){
 			q_dto.setImage(multi.getOriginalFileName("image"));
+			q_dto.setQuiz_type(2);
+		}else {
+			q_dto.setQuiz_type(1);
 		}
 		q_dto.setAnswer(multi.getParameter("answer"));
 		

@@ -10,7 +10,7 @@ public class Member_Info_DTO {
 	private String gender;
 	private String login_type;
 	private String ban;
-	
+
 	public int getMember_key() {
 		return member_key;
 	}
