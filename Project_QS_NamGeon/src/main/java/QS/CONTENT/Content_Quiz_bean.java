@@ -31,9 +31,59 @@ public class Content_Quiz_bean {
 		
 	}
 	
+	public void saveQuizData(MultipartRequest multi) {
+		Quiz_List_DTO q_dto = new Quiz_List_DTO();
+		q_dto.setQuestion(multi.getParameter("question"));
+		
+	    String[] exampleArr =  multi.getParameterValues("example");
+	    String example = "";
+	    for(String str : exampleArr){
+		    example += str+" ";
+	    }
+		if(!example.trim().equals("")){
+			q_dto.setExample(example.trim());
+		}else {
+			//System.out.println("example비어있음");
+		}
+		
+		if(multi.getOriginalFileName("image")!=null){
+			q_dto.setImage(multi.getOriginalFileName("image"));
+		}
+		q_dto.setAnswer(multi.getParameter("answer"));
+		
+		quiz_list.add(q_dto);
+	}
+	
+	public void updateQuizData(MultipartRequest multi,int number) {
+		Quiz_List_DTO q_dto = new Quiz_List_DTO();
+		q_dto.setQuestion(multi.getParameter("question"));
+		
+		String[] exampleArr =  multi.getParameterValues("example");
+		String example = "";
+		for(String str : exampleArr){
+			example += str+" ";
+		}
+		if(!example.trim().equals("")){
+			q_dto.setExample(example.trim());
+		}else {
+			//System.out.println("example비어있음");
+		}
+		
+		if(multi.getOriginalFileName("image")!=null){
+			q_dto.setImage(multi.getOriginalFileName("image"));
+		}
+		q_dto.setAnswer(multi.getParameter("answer"));
+		
+		quiz_list.set(number,q_dto);
+	}
+	
 	public void resetSaveData() {
 		cl_dto = new Content_List_DTO();
 		quiz_list.clear();
+	}
+	
+	public void deleteQuiz_List(int number) {
+		quiz_list.remove(number);
 	}
 	
 	public Content_List_DTO getCL_DTO() {
