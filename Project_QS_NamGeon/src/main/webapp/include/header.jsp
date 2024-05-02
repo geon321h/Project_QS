@@ -14,13 +14,13 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuestionS:Quiz and Survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>QuestionS</title>
     
     <!-- css 부트스트랩 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-    rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
-    crossorigin="anonymous"/>
+    rel="stylesheet" 
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- css 페이지 -->
     <link href="<%=request.getContextPath()%>/css/header_footer_style.css" rel="stylesheet" />
@@ -28,11 +28,12 @@
     <!-- 아이콘 부트스트랩 -->
     <link rel="stylesheet" 
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+    
     <!-- javascript 부트스트랩 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
     crossorigin="anonymous"></script>
+    
     <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
@@ -53,6 +54,11 @@
         function create_page_move(page){
             location.href = "<%=request.getContextPath()%>/content/"+page+"/"+page+"_create.jsp";
         }
+        
+        function limit_msg() {
+			alert("추후 추가될 컨텐츠 입니다. 조금만 기다려주세요!");
+		}
+        
     </script>
 
 </head>
@@ -65,7 +71,7 @@
         <div class="collapse navbar-collapse " id="navbarResponsive">
             <ul class="navbar-nav ms-5 my-2 my-lg-0 ">
                 <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/content/quiz/quiz_main.jsp">퀴즈</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">설문조사</a></li>
+                <!-- <li class="nav-item"><a class="nav-link" href="#">설문조사</a></li> -->
                 <li class="nav-item"><a class="nav-link" href="#">내 페이지</a></li>
                 <%
                 if(email !=null){
@@ -105,7 +111,7 @@
             <p class="pt-3"><img src="<%=request.getContextPath()%>/assets/icon/quiz_icon.png"></img></p>
             <p class="pt-2">퀴즈</pc>
         </button>
-        <button class="btn mx-2" id="survey_create_btn" onclick="create_page_move('survey')">
+        <button class="btn mx-2" id="survey_create_btn" onclick="limit_msg()">
             <p class="pt-3"><i class="bi bi-file-text"></i></p>
             <p class="pt-2">설문조사</p>
         </button>

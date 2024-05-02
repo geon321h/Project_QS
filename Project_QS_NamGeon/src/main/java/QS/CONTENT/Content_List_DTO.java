@@ -11,7 +11,23 @@ public class Content_List_DTO {
 	private String content_public ;
 	private String content_type;
 	private String create_day  ;
-
+	
+	// 사용자 //
+	private String ban;
+	private String user_name;
+	
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+	public String getBan() {
+		return ban;
+	}
+	public void setBan(String ban) {
+		this.ban = ban;
+	}
 	
 	public int getContent_key() {
 		return content_key;

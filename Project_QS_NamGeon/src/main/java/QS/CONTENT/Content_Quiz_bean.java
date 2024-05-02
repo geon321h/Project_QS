@@ -21,7 +21,10 @@ public class Content_Quiz_bean {
 		cl_dto.setCreate_user(Integer.parseInt(multi.getParameter("member_key")));
 		cl_dto.setTitle(multi.getParameter("title"));
 		cl_dto.setExplanation(multi.getParameter("explanation"));
-		cl_dto.setThumbnail(multi.getOriginalFileName("thumbnail"));
+		System.out.println(multi.getOriginalFileName("thumbnail"));
+		if(multi.getOriginalFileName("thumbnail")!=null){
+			cl_dto.setThumbnail(multi.getOriginalFileName("thumbnail"));
+		}
 		if(multi.getParameter("content_public")==null){
 			cl_dto.setContent_public("N");
 		}else {
@@ -50,12 +53,12 @@ public class Content_Quiz_bean {
 			q_dto.setImage(multi.getOriginalFileName("image"));
 		}
 		q_dto.setAnswer(multi.getParameter("answer"));
-		
+		q_dto.setQuiz_type(Integer.parseInt(multi.getParameter("type")));
 		quiz_list.add(q_dto);
 	}
 	
 	public void updateQuizData(MultipartRequest multi,int number) {
-		Quiz_List_DTO q_dto = new Quiz_List_DTO();
+		Quiz_List_DTO q_dto = quiz_list.get(number);
 		q_dto.setQuestion(multi.getParameter("question"));
 		
 		String[] exampleArr =  multi.getParameterValues("example");
@@ -63,16 +66,23 @@ public class Content_Quiz_bean {
 		for(String str : exampleArr){
 			example += str+" ";
 		}
+		
 		if(!example.trim().equals("")){
 			q_dto.setExample(example.trim());
-			q_dto.setQuiz_type(3);
 		}else if(multi.getOriginalFileName("image")!=null){
 			q_dto.setImage(multi.getOriginalFileName("image"));
-			q_dto.setQuiz_type(2);
-		}else {
-			q_dto.setQuiz_type(1);
 		}
 		q_dto.setAnswer(multi.getParameter("answer"));
+		q_dto.setQuiz_type(Integer.parseInt(multi.getParameter("type")));
+		
+		if(q_dto.getQuiz_type()==1) {
+			q_dto.setImage(null);
+			q_dto.setExample(null);
+		}else if(q_dto.getQuiz_type()==2) {
+			q_dto.setExample(null);
+		}else if(q_dto.getQuiz_type()==3) {
+			q_dto.setImage(null);
+		}
 		
 		quiz_list.set(number,q_dto);
 	}

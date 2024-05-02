@@ -38,8 +38,8 @@ function pop_content_info_Close() {
    let thumbnail;
    $('#thumbnail_file').change(function(){
       thumbnail = this.files[0];
-      console.log($('#thumbnail_file').val());
       let reader = new FileReader();
+      reader.readAsDataURL(thumbnail);
       
       reader.onload = function(){
          $('#thumbnail_image_box').show();
@@ -132,7 +132,7 @@ function pop_content_info_Close() {
         $('textarea[name="explanation"]').focus();
         blank_pass = false;
     }
-    if($('input[name="thumbnail"]').val()==""){
+    if($('input[name="thumbnail"]').val()=="" && $('.thumbnail_image').attr('src')==""){
         $('#thumbnail_msg').html("썸네일을 추가해주세요.");
         blank_pass = false;
     }
@@ -148,18 +148,21 @@ let Quiz_type = 1;
    $('#example_box_area').hide();
    $('#quiz_delete').click();
    $('input[name="example"]').val("");
+   $('#quiz_type_value').val(1);
    Quiz_type = 1;
  }
  function type_2_setting(){
     $('#quiz_box_area').show();
     $('#example_box_area').hide();
     $('input[name="example"]').val("");
+    $('#quiz_type_value').val(2);
     Quiz_type = 2;
    }
    function type_3_setting(){
    $('#example_box_area').show();
    $('#quiz_box_area').hide();
    $('#quiz_delete').click();
+   $('#quiz_type_value').val(3);
    Quiz_type = 3;
  }
 
@@ -186,7 +189,7 @@ function quiz_blank_check(blank_pass){
        blank_pass = false;
    }
    if(Quiz_type == 2){
-      if($('input[name="image"]').val()==""){
+      if($('input[name="image"]').val()=="" && $('.quiz_image').attr('src')==""){
          $('#image_msg').html("이미지를 추가해주세요.");
          blank_pass = false;
      }
@@ -233,18 +236,27 @@ $(function(){
 })
 
 // 퀴즈 생성버튼 //
-function create_quiz_list(last_question){
-   $('#quiz_list_form').attr("action","quiz_add.jsp");
+function create_quiz_list(last_question,last_type){
+   $('#quiz_list_form').attr("action","quiz_list_add.jsp");
    $('input[name="question"]').val(last_question);
    $('#quiz_delete').click();
    $('input[name="answer"]').val("");
    $('input[name="example"]').val("");
+
+   if(last_type == 1){
+      type_1_setting();
+   }else if(last_type == 2){
+      type_2_setting();
+   }else if(last_type == 3){
+      type_3_setting();
+   }
+
    pop_quiz_Open();
 }
 
 // 퀴즈 수정하기 //
 function update_quiz_list(number,type,question,answer,example,image){
-   
+   console.log(type);
    $('#quiz_delete').click();
    $('input[name="example"]').val("");
    if(type==1){
@@ -274,18 +286,33 @@ function info_controller(title,explanation,thumbnail,content_public) {
 
    var modalPop = $('.create_modal_wrap');
    var modalBg = $('.create_modal_bg');
- 
+   
    $(modalPop).show();
    $(modalBg).show();
 
    $('input[name="title"]').val(title);
    $('textarea[name="explanation"]').val(explanation);
-   if(content_public != ""){
+   if(content_public == 'Y'){
       $('input[name="content_public"]').prop('checked',true);
+   }else{
+      $('input[name="content_public"]').prop('checked',false);
    }
    $('input[name="title"]').val(title);
+
    $('#thumbnail_image_box').show();
    $('#thumbnail_file_box').hide();
    $('.thumbnail_image').attr('src', thumbnail);
 
+}
+
+function delete_controller(){
+   location.href="quiz_create.jsp";
+}
+
+function insert_controller(quiz_count){
+   if(quiz_count>0){
+      location.href="quiz_add_proc.jsp";
+   }else{
+      alert("퀴즈를 1개 이상 추가해주세요.");
+   }
 }

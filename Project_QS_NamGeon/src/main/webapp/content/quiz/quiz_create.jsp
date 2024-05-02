@@ -12,8 +12,8 @@
 	String save = request.getParameter("save");
     String saveFolder = "/assets/img";
     String requestFolder = request.getContextPath()+"/"+saveFolder;
-
-	save = "save";// 퀴즈생성을 위해 임시
+    ArrayList<Quiz_List_DTO> lists = content_quiz.getQuiz_List();
+	//save = "save";// 퀴즈생성을 위해 임시
 
 	if(save==null){
 		if(content_quiz.getCL_DTO().getThumbnail() != null){
@@ -24,14 +24,34 @@
  		 	File file = new File(fullPath);
 		 	if(file.exists()){
 		 		if(file.delete()){
-		 			System.out.println("파일삭제 성공");
+		 			System.out.println("썸네일 삭제");
 		 		}else{
 		 			System.out.println("파일삭제 실패");
 		 		}
 		 	}else{
 		 			System.out.println("파일없음");
 		 	}
+		 	if(lists.size()>0){
+			 	for(Quiz_List_DTO q_dto : lists){
+			 		if(q_dto.getImage()!=null){
+						configDir = config.getServletContext().getRealPath(saveFolder);
+					 	fullPath = configDir+"\\"+q_dto.getImage();
+					  	
+			 		 	file = new File(fullPath);
+					 	if(file.exists()){
+					 		if(file.delete()){
+					 			System.out.println("퀴즈 이미지 삭제");
+					 		}else{
+					 			System.out.println("파일삭제 실패");
+					 		}
+					 	}else{
+					 			System.out.println("파일없음");
+					 	}
+			 		}
+			 	}
+		 	}
 		}
+		
  		content_quiz.resetSaveData();
 		
 	}else{
@@ -43,7 +63,7 @@
 		</script>
 		<%
 	}
-	ArrayList<Quiz_List_DTO> lists = content_quiz.getQuiz_List();
+	
 %>
 
 
@@ -113,7 +133,8 @@
 <div class="create_quiz_modal_wrap p-3">
     <div class="quiz_content_box">
         <div class="content_quiz_area pt-2 pb-4 px-3 text-center">
-            <form action="quiz_add.jsp" class="text-start p-3 pb-3 mb-5" method="post" enctype="multipart/form-data" id="quiz_list_form">
+            <form action="quiz_list_add.jsp" class="text-start p-3 pb-3 mb-5" method="post" enctype="multipart/form-data" id="quiz_list_form">
+                <input type="hidden" name="type" value="1" id="quiz_type_value">
                 <p class="">퀴즈만들기</p>
                 <hr>
                 <div class="col_split my-3">
@@ -225,12 +246,14 @@
         	%>
             <%
             String last_question = "";
+            int last_type = 1;
             if(lists.size()>0){
+                last_type = lists.get(lists.size()-1).getQuiz_type();
                 last_question = lists.get(lists.size()-1).getQuestion();
             }
             %>
             <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
-                <div class="create_quiz_btn text-center p-3" onclick="create_quiz_list('<%=last_question%>')">
+                <div class="create_quiz_btn text-center p-3" onclick="create_quiz_list('<%=last_question%>',<%=last_type%>)">
                     <h4 class="mt-5">문제를 추가하세요!</h4>
                     <i class="bi bi-plus-circle"></i>
                 </div>
@@ -253,8 +276,8 @@
     <div id="quiz_controller">
         <div class="controller_btn_box">
             <button id="info_controller_btn" onclick="info_controller('<%=title%>','<%=explanation%>','<%=thumbnail%>','<%=content_public%>')"><i class="bi bi-info-lg"></i></button>
-            <button id="insert_controller_btn "><i class="bi bi-floppy"></i></button>
-            <button id="delete_controller_btn"><i class="bi bi-x-lg"></i></button>
+            <button id="insert_controller_btn" onclick="insert_controller(<%=lists.size()%>)"><i class="bi bi-floppy"></i></button>
+            <button id="delete_controller_btn" onclick="delete_controller()"><i class="bi bi-x-lg"></i></button>
         </div>
     </div>
 
