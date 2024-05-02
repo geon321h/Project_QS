@@ -125,6 +125,76 @@ public class Content_List_DAO {
 		
 		return lists;
 	}
+	
+	public ArrayList<Content_List_DTO> getAllContentByNotBan() {
+		String sql = "SELECT CONTENT_KEY,TITLE,EXPLANATION,T10.CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY,T20.BAN,T20.USER_NAME "
+				+ "FROM (SELECT CONTENT_KEY,TITLE,EXPLANATION,CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY "
+				+ "      FROM CONTENT_LIST)T10 "
+				+ "    ,(SELECT MEMBER_KEY,BAN,USER_NAME "
+				+ "      FROM MEMBER_INFO"
+				+ "	   WHERE BAN = 'N') T20 "
+				+ "WHERE T10.CREATE_USER = T20.MEMBER_KEY "
+				+ "ORDER BY CONTENT_KEY";
+		ArrayList<Content_List_DTO> lists = new ArrayList<>();
+		Content_List_DTO cl_dto = null;
+		try {
+			
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				cl_dto = getContentBean(rs);
+				lists.add(cl_dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+				if (rs!=null) {
+					rs.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return lists;
+	}
+	
+	public int delete_content_quiz(String[] rowcheckArr) {
+		int cnt = -1;
+		String sql = "delete from content_list where content_key = ? ";
+		
+		for(int i=1;i<rowcheckArr.length;i++) {
+			sql += " or content_key=?";
+		}
+		try {
+			ps = conn.prepareStatement(sql);
+			for(int i=0;i<rowcheckArr.length;i++) {
+				int row = Integer.parseInt(rowcheckArr[i]);
+				ps.setInt(i+1, row);
+			}
+			
+			cnt = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return cnt;
+	}
 
 
 	public Content_List_DTO getContentBean(ResultSet rs)throws SQLException {

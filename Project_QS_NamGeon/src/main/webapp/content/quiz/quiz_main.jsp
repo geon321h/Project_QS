@@ -1,3 +1,7 @@
+<%@page import="QS.CONTENT.Content_List_DTO"%>
+<%@page import="QS.CONTENT.Content_List_DAO"%>
+<%@page import="QS.CONTENT.Quiz_List_DTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -22,6 +26,31 @@
                 </div>
                 <div class="col-3"></div>
             </header>
+            <div class="row g-5 content_box">
+                <%
+                String saveFolder = "/assets/img";
+                String requestFolder = request.getContextPath()+"/"+saveFolder;
+            	Content_List_DAO cl_dao = Content_List_DAO.getInstance();
+            	ArrayList<Content_List_DTO> lists = cl_dao.getAllContentByNotBan();
+                    for(Content_List_DTO cl_dto : lists){
+                        %>
+                            <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+                                <div class="content_info_box" onclick="">
+                                    <div class="content_image_box ">
+                                        <img src="<%=requestFolder+"/"+cl_dto.getThumbnail()%>" alt="">
+                                    </div>
+                                    <div class="content_text_box">
+                                        <h3><%=cl_dto.getTitle()%></h3>
+                                        <div class="content_explanation_box">
+                                            <p><%=cl_dto.getExplanation()%></p>                                
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <%
+                    }
+                %>                
+            </div>
         </div>
     </div>
     <jsp:include page="../../include/footer.jsp"/>
