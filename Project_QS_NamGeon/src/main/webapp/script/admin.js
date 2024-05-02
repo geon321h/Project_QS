@@ -55,7 +55,6 @@ function ban_member(){
     }else{
         alert("활동 정지할 회원을 선택해주세요.");
     }
-
 }
 
 function ban_off_member(){
@@ -99,6 +98,36 @@ function ban_off_member(){
         });
     }else{
         alert("활동 정지를 해제할 회원을 선택해주세요.");
+    }
+}
+
+function delete_quiz(){
+    let rcheck = document.getElementsByName("rowcheck"); 
+    let rowcheck_value =[];
+    let flag = false;
+    
+    for(let i=0;i<rcheck.length;i++){
+        if(rcheck[i].checked){
+            rowcheck_value.push(rcheck[i].value); 
+            flag=true;
+        }
+    }
+    if(flag){
+        $.ajax({
+            url : "delete_quiz_admin_proc.jsp",
+            traditional: true,
+            data : ({
+                rowcheck : rowcheck_value,
+            }),
+            success : function(data) {
+                if($.trim(data)>0){
+                    alert(`회원 ${$.trim(data)}개의 컨텐츠를 삭제했습니다.`);
+                    location.href="quiz_admin.jsp";
+                }
+            }
+        });
+    }else{
+        alert("삭제할 컨텐츠를 선택해주세요.");
     }
 }
 

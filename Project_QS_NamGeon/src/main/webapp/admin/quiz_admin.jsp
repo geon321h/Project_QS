@@ -8,15 +8,15 @@
     <div class="container" id="content">
         <div class="m-auto content" id="content_member">
             <div id="ban_btn" class="text-end mb-3">
-                <a href="javascript:" class="btn btn-outline-danger ">삭제하기</a>
+                <a href="javascript:" class="btn btn-outline-danger" onclick="delete_quiz()">삭제하기</a>
             </div>
-            <table border="1">
+            <table border="1" id="quiz_table">
                 <tr>
                     <th><input type="checkbox" name="checkAll" onclick="choiceAll(this)"></th>
                     <th>번호</th>
                     <th>퀴즈 제목</th>
                     <th>퀴즈 설명</th>
-                    <th>만든 유저</th>
+                    <th>유저(유저번호)</th>
                     <th>썸네일</th>
                     <th>퀴즈 갯수</th>
                     <th>공개 여부</th>
@@ -31,8 +31,9 @@
 	                   		%>
 	               			<tr <%if(cl_dto.getBan().equals("Y")){%>class="ban_td"<%} %>>
 	               				<td><input type="checkbox" name="rowcheck"  value="<%=cl_dto.getContent_key()%>"></td>
+	                            <td ><%=cl_dto.getContent_key()%></td>
 	                            <td ><%=cl_dto.getTitle()%></td>
-	                            <td ><%=cl_dto.getExplanation()%></td>
+	                            <td class="explanation_td"><%=cl_dto.getExplanation()%></td>
 	                            <td ><%=cl_dto.getUser_name()%>(<%=cl_dto.getCreate_user()%>)</td>
 	                            <td ><%=cl_dto.getThumbnail()%></td>
 	                            <td ><%=cl_dto.getContent_count()%></td>
