@@ -203,7 +203,7 @@
         </div>
     </div>
 </div>
-    <link href="<%=request.getContextPath()%>/css/quiz.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/css/quiz.css" rel="stylesheet"/>
     <div class="container" id="container">
         <div id="content" class="row g-5 quiz_content">
         	<%
