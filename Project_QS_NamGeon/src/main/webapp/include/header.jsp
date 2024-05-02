@@ -16,27 +16,28 @@
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <title>QuestionS</title>
-    
-    <!-- css 부트스트랩 -->
+	
+	<!--css 부트스트랩-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
     rel="stylesheet" 
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <!-- css 페이지 -->
-    <link href="<%=request.getContextPath()%>/css/header_footer_style.css" rel="stylesheet" />
-
-    <!-- 아이콘 부트스트랩 -->
-    <link rel="stylesheet" 
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    
-    <!-- javascript 부트스트랩 -->
+    <!--javascript 부트스트랩-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
     crossorigin="anonymous"></script>
-    
+
+    <!--아이콘 부트스트랩-->
+    <link rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+     
+    <!-- css 페이지 -->
     <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-
+    <link href="<%=request.getContextPath()%>/css/header_footer_style.css" rel="stylesheet" />
+    <%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/bootstrap-5.3.3-dist/css/bootstrap.css">
+	<script type="text/javascript" src="<%=request.getContextPath()%>/assets/bootstrap-5.3.3-dist//js/bootstrap.js"></script>
+ --%>
     <!-- 추가 개인 javascript -->
     <script type="text/javascript">
         /*  팝업이전에 로그인여부 확인  */

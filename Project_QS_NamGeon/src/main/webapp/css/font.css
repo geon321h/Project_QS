@@ -1,31 +1,17 @@
 @charset "utf-8";
-
-@font-face {
-    font-family: 'Katuri';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_13@1.0/Katuri.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-  
-@font-face {
-    font-family: 'KCC-Ganpan';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCC-Ganpan.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-  
-@font-face {
-    font-family: 'NanumSquareNeo-Variable';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
   
 @font-face {
     font-family: 'MaplestoryOTFBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-style: normal;
+	font-weight: 400;
+	src: url('../assets/font/Maplestory\ Bold.ttf');
+}
+
+@font-face {
+    font-family: 'MaplestoryOTFBold_L';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../assets/font/Maplestory\ Light.ttf');
 }
 
 @font-face {
@@ -38,7 +24,7 @@
 @font-face {
 	font-family: 'NanumSquare_B';
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 600;
 	src: url('../assets/font/NanumSquareNeo-cBd.ttf');
 }
 

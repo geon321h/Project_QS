@@ -12,7 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QuestionS:Quiz and Survey</title>
+<title>QuestionS</title>
 
 <!-- css 부트스트랩 -->
 <link
@@ -21,8 +21,6 @@
 	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
 	crossorigin="anonymous" />
 
-<!-- css 페이지 -->
-<link href="../css/member.css" rel="stylesheet" />
 
 <!-- 아이콘 부트스트랩 -->
 <link rel="stylesheet"
@@ -33,6 +31,9 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 	crossorigin="anonymous"></script>
+	 
+<!-- css 페이지 -->
+<link href="../css/member.css" rel="stylesheet" />
 
 <!-- javascript sns -->
 <script type="text/javascript"
@@ -41,6 +42,9 @@
 <!-- javascript 멤버 -->
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/script/member.js"></script>
+
+<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/bootstrap-5.3.3-dist/css/bootstrap.css">
+	<script type="text/javascript" src="<%=request.getContextPath()%>/assets/bootstrap-5.3.3-dist//js/bootstrap.js"></script> --%>
 
 </head>
 <body>
