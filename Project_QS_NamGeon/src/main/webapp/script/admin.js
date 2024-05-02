@@ -102,6 +102,7 @@ function ban_off_member(){
 }
 
 function delete_quiz(){
+    console.log(1);
     let rcheck = document.getElementsByName("rowcheck"); 
     let rowcheck_value =[];
     let flag = false;
@@ -121,7 +122,7 @@ function delete_quiz(){
             }),
             success : function(data) {
                 if($.trim(data)>0){
-                    alert(`회원 ${$.trim(data)}개의 컨텐츠를 삭제했습니다.`);
+                    alert(`${$.trim(data)}개의 컨텐츠를 삭제했습니다.`);
                     location.href="quiz_admin.jsp";
                 }
             }

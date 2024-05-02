@@ -62,11 +62,15 @@
 
 /* 퀴즈 관리 */
 
-
 .explanation_td {
     overflow: hidden;   
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 200px;
+}
+
+#quiz_table td img {
+    width: 100px;
+    height: 100px;
 }
 

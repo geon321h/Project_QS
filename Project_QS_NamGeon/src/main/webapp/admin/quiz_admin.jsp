@@ -26,17 +26,22 @@
                 	Content_List_DAO cl_dao = Content_List_DAO.getInstance();
                 	ArrayList<Content_List_DTO> lists = cl_dao.getAllContent();
                 	
+                	String saveFolder = "/assets/img";
+                    String requestFolder = request.getContextPath()+"/"+saveFolder;
+                	
                 	if(lists.size()>0){
                 		for(Content_List_DTO cl_dto : lists){
 	                   		%>
 	               			<tr <%if(cl_dto.getBan().equals("Y")){%>class="ban_td"<%} %>>
-	               				<td><input type="checkbox" name="rowcheck"  value="<%=cl_dto.getContent_key()%>"></td>
+	               				<td><input type="checkbox" name="rowcheck" value="<%=cl_dto.getContent_key()%>"></td>
 	                            <td ><%=cl_dto.getContent_key()%></td>
 	                            <td ><%=cl_dto.getTitle()%></td>
 	                            <td class="explanation_td"><%=cl_dto.getExplanation()%></td>
 	                            <td ><%=cl_dto.getUser_name()%>(<%=cl_dto.getCreate_user()%>)</td>
-	                            <td ><%=cl_dto.getThumbnail()%></td>
-	                            <td ><%=cl_dto.getContent_count()%></td>
+	                            <td >
+	                            	<img src="<%=requestFolder+"/"+cl_dto.getThumbnail()%>" alt="">
+	                            </td>
+	                            <td ><%=cl_dto.getContent_count()%>개</td>
 	                            <%
 	                            if(cl_dto.getContent_public().equals("Y")){
 	                            	%>

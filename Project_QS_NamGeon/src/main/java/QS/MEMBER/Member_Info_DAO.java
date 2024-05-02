@@ -227,7 +227,7 @@ public class Member_Info_DAO {
 		return flag;
 	}
 	
-	public int banMember(String[] rowcheckArr ,String ban) {
+	public int banMember(String[] rowcheckArr, String ban) {
 		int cnt = -1;
 		String sql = "update member_info set ban = ? where member_key=? ";
 		for(int i=1;i<rowcheckArr.length;i++) {
