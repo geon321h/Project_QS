@@ -54,7 +54,7 @@
         <div class="collapse navbar-collapse " id="navbarResponsive">
             <ul class="navbar-nav ms-5 my-2 my-lg-0">
                 <li class="nav-item mx-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/member_admin.jsp">멤버관리</a></li>
-                <li class="nav-item mx-3"><a class="nav-link" href="#">퀴즈관리</a></li>
+                <li class="nav-item mx-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/quiz_admin.jsp">퀴즈관리</a></li>
                 <!-- <li class="nav-item mx-3"><a class="nav-link" href="#">설문조사 관리</a></li> -->
                 <li class="nav-item mx-3"><a class="nav-link" href="#">문의 관리</a></li>
                 <li class="nav-item mx-3"><a class="nav-link" href="<%=request.getContextPath()%>/main.jsp">사용자 홈</a></li>
