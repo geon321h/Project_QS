@@ -138,7 +138,7 @@ public class Content_List_DAO {
 		cl_dto.setContent_count(rs.getInt("content_count"));
 		cl_dto.setContent_public(rs.getString("content_public"));
 		cl_dto.setUser_name(rs.getString("user_name"));
-		cl_dto.setCreate_day(rs.getString("create_day"));
+		cl_dto.setCreate_day(String.valueOf(rs.getDate("create_day")));
 		cl_dto.setBan(rs.getString("ban"));
 		
 		return cl_dto;
