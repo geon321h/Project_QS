@@ -42,7 +42,6 @@
     <script type="text/javascript">
         /*  팝업이전에 로그인여부 확인  */
         function login_check() {
-            
             if("<%=email%>"=="null"){
                 alert("로그인이 필요한 컨텐츠입니다.");
                 location.href = "<%=request.getContextPath()%>/member/login.jsp?url=<%=request.getRequestURI()%>";
@@ -73,9 +72,19 @@
             <ul class="navbar-nav ms-5 my-2 my-lg-0 ">
                 <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/content/quiz/quiz_main.jsp">퀴즈</a></li>
                 <!-- <li class="nav-item"><a class="nav-link" href="#">설문조사</a></li> -->
-                <li class="nav-item"><a class="nav-link" href="#">내 페이지</a></li>
                 <%
-                if(email !=null){
+                if(email != null){
+                	%>
+	                <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/content/mypage/mypage_main.jsp">내 페이지</a></li>
+                	<%
+                }else {
+                	%>
+	                <li class="nav-item"><a class="nav-link" href="javascript:login_check();">내 페이지</a></li>
+                	<%
+                }
+                %>
+                <%
+                if(email != null){
 	                if(email.equals("admin")){
 	                	%>
 		                <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/main.jsp">관리자 홈</a></li>

@@ -1,0 +1,53 @@
+@import 'default_style.css';
+
+/* 헤더 변경 */
+
+@media (min-width: 992px) {
+  #mainNav {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    background-color: #fff !important;
+  }
+  #mainNav .navbar-brand {
+    color: #212529  !important;
+  }
+  #mainNav .navbar-brand:hover {
+    color: var(--bs-sub_color)  !important;
+  }
+  #mainNav .navbar-nav .nav-item .nav-link {
+    color: #212529  !important;
+  }
+  #mainNav .navbar-nav .nav-item .nav-link:hover {
+    color: var(--bs-sub_color)  !important;
+  }
+
+  #mainNav .nav-pills .nav-item #create_nav {
+    background-color: var(--bs-sub_color)  !important;
+    color: white  !important;
+    font-weight: 300  !important;
+  }
+
+  #mainNav .nav-pills .nav-item .nav-link {
+    color: #212529  !important;
+  }
+  #mainNav .nav-pills .nav-item .nav-link:hover {
+    color: var(--bs-sub_color) !important;
+  }
+}
+
+body {
+ height: auto;
+ min-height: 100vh;
+ background-color: white;
+}
+
+#container {
+ min-height: 100vh;
+ 
+}
+
+#content {
+ padding-top: 8rem;
+ width: 100%;
+ padding-bottom: 5rem;
+ user-select: none;
+}
