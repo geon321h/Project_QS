@@ -126,7 +126,7 @@ public class Content_List_DAO {
 		return lists;
 	}
 	
-	public ArrayList<Content_List_DTO> getAllContentByNotBan() {
+	public ArrayList<Content_List_DTO> getAllContentRecent(String search) {
 		String sql = "SELECT CONTENT_KEY,TITLE,EXPLANATION,T10.CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY,T20.BAN,T20.USER_NAME "
 				+ "FROM (SELECT CONTENT_KEY,TITLE,EXPLANATION,CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY "
 				+ "      FROM CONTENT_LIST)T10 "
@@ -134,12 +134,111 @@ public class Content_List_DAO {
 				+ "      FROM MEMBER_INFO"
 				+ "	   WHERE BAN = 'N') T20 "
 				+ "WHERE T10.CREATE_USER = T20.MEMBER_KEY "
-				+ "ORDER BY CONTENT_KEY";
+				+ "AND (USER_NAME LIKE ? OR TITLE LIKE ?) "
+				+ "ORDER BY CREATE_DAY DESC";
 		ArrayList<Content_List_DTO> lists = new ArrayList<>();
 		Content_List_DTO cl_dto = null;
 		try {
 			
 			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%"+search+"%");
+			ps.setString(2, "%"+search+"%");
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				cl_dto = getContentBean(rs);
+				lists.add(cl_dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+				if (rs!=null) {
+					rs.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return lists;
+	}
+	
+	public ArrayList<Content_List_DTO> getAllContentLike(String search) {
+		String sql = "SELECT CONTENT_KEY,TITLE,EXPLANATION,T10.CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY,T20.BAN,T20.USER_NAME, NVL(CNT, 0) CNT "
+				+ "FROM (SELECT T11.CONTENT_KEY,TITLE,EXPLANATION,CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY,CNT "
+				+ "      FROM (SELECT * "
+				+ "            FROM CONTENT_LIST) T11 "
+				+ "      LEFT OUTER JOIN "
+				+ "           (SELECT CONTENT_KEY, COUNT(*)CNT "
+				+ "            FROM LIKE_CONTENT "
+				+ "            GROUP BY CONTENT_KEY) T12 "
+				+ "      ON T11.CONTENT_KEY = T12.CONTENT_KEY)T10 "
+				+ "    ,(SELECT MEMBER_KEY,BAN,USER_NAME "
+				+ "      FROM MEMBER_INFO "
+				+ "      WHERE BAN = 'N') T20 "
+				+ "WHERE T10.CREATE_USER = T20.MEMBER_KEY "
+				+ "AND (USER_NAME LIKE ? OR TITLE LIKE ?) "
+				+ "ORDER BY CNT DESC, CONTENT_KEY DESC ";
+		ArrayList<Content_List_DTO> lists = new ArrayList<>();
+		Content_List_DTO cl_dto = null;
+		try {
+			
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%"+search+"%");
+			ps.setString(2, "%"+search+"%");
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				cl_dto = getContentBean(rs);
+				lists.add(cl_dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+				if (rs!=null) {
+					rs.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return lists;
+	}
+	
+	public ArrayList<Content_List_DTO> getAllContentPlay(String search) {
+		String sql = "SELECT CONTENT_KEY,TITLE,EXPLANATION,T10.CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY,T20.BAN,T20.USER_NAME, NVL(CNT, 0) CNT "
+				+ "FROM (SELECT T11.CONTENT_KEY,TITLE,EXPLANATION,CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY,CNT "
+				+ "      FROM (SELECT * "
+				+ "            FROM CONTENT_LIST) T11 "
+				+ "      LEFT OUTER JOIN "
+				+ "           (SELECT CONTENT_KEY, COUNT(*)CNT "
+				+ "            FROM PLAY_RECORD "
+				+ "            GROUP BY CONTENT_KEY) T12 "
+				+ "      ON T11.CONTENT_KEY = T12.CONTENT_KEY)T10 "
+				+ "    ,(SELECT MEMBER_KEY,BAN,USER_NAME "
+				+ "      FROM MEMBER_INFO "
+				+ "      WHERE BAN = 'N') T20 "
+				+ "WHERE T10.CREATE_USER = T20.MEMBER_KEY "
+				+ "AND (USER_NAME LIKE ? OR TITLE LIKE ?) "
+				+ "ORDER BY CNT DESC, CONTENT_KEY DESC ";
+		ArrayList<Content_List_DTO> lists = new ArrayList<>();
+		Content_List_DTO cl_dto = null;
+		try {
+			
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%"+search+"%");
+			ps.setString(2, "%"+search+"%");
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
