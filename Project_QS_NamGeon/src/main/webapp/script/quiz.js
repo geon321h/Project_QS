@@ -316,3 +316,41 @@ function insert_controller(quiz_count){
       alert("퀴즈를 1개 이상 추가해주세요.");
    }
 }
+
+
+// 퀴즈 메인 //
+function like_btn(like,content_key,member_key) {
+   let like_check = like.classList.contains("bi-suit-heart");
+   let like_count = like.nextElementSibling;
+   let change_type = "";
+   if(like_check){
+      like.classList.replace("bi-suit-heart","bi-suit-heart-fill");
+      change_type = "insert";
+   }else{
+      like.classList.replace("bi-suit-heart-fill","bi-suit-heart");
+      change_type = "delete";
+   }
+
+   $.ajax({
+      url : "change_like_proc.jsp",
+      data : ({
+         content_key : content_key,
+         member_key : member_key,
+         change_type : change_type
+      }),
+      success : function() {
+         if(like_check){
+            like_count.innerText = Number(like_count.innerText)+1;
+         }else{
+            like_count.innerText = Number(like_count.innerText)-1;
+         }
+      }
+  });
+
+}
+
+function settingChange(){
+   
+   $('#setting_form').submit();
+
+}
