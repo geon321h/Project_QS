@@ -75,7 +75,7 @@
                 <%
                 if(email != null){
                 	%>
-	                <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/content/mypage/mypage_main.jsp">내 페이지</a></li>
+	                <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/content/mypage/mypage_profile.jsp">내 페이지</a></li>
                 	<%
                 }else {
                 	%>
