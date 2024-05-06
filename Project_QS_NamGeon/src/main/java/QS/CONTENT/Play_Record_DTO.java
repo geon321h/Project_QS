@@ -1,5 +1,7 @@
 package QS.CONTENT;
 
+import java.sql.Timestamp;
+
 public class Play_Record_DTO {
 
 	//Like_Content 와 공유 //
@@ -8,8 +10,22 @@ public class Play_Record_DTO {
 	
 	//play_record 전용//
 	private int score;
-	private String play_day;
+	private Timestamp play_day;
+	private int rank;
+	private String user_name;
 	
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
 	public int getMember_key() {
 		return member_key;
 	}
@@ -28,10 +44,10 @@ public class Play_Record_DTO {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	public String getPlay_day() {
+	public Timestamp getPlay_day() {
 		return play_day;
 	}
-	public void setPlay_day(String play_day) {
+	public void setPlay_day(Timestamp play_day) {
 		this.play_day = play_day;
 	}
 	

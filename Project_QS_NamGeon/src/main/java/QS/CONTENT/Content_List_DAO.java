@@ -129,7 +129,8 @@ public class Content_List_DAO {
 	public ArrayList<Content_List_DTO> getAllContentRecent(String search) {
 		String sql = "SELECT CONTENT_KEY,TITLE,EXPLANATION,T10.CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY,T20.BAN,T20.USER_NAME "
 				+ "FROM (SELECT CONTENT_KEY,TITLE,EXPLANATION,CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY "
-				+ "      FROM CONTENT_LIST)T10 "
+				+ "      FROM CONTENT_LIST"
+				+ "		WHERE CONTENT_PUBLIC = 'Y')T10 "
 				+ "    ,(SELECT MEMBER_KEY,BAN,USER_NAME "
 				+ "      FROM MEMBER_INFO"
 				+ "	   WHERE BAN = 'N') T20 "
@@ -172,7 +173,8 @@ public class Content_List_DAO {
 		String sql = "SELECT CONTENT_KEY,TITLE,EXPLANATION,T10.CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY,T20.BAN,T20.USER_NAME, NVL(CNT, 0) CNT "
 				+ "FROM (SELECT T11.CONTENT_KEY,TITLE,EXPLANATION,CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY,CNT "
 				+ "      FROM (SELECT * "
-				+ "            FROM CONTENT_LIST) T11 "
+				+ "            FROM CONTENT_LIST"
+				+ "			WHERE CONTENT_PUBLIC = 'Y') T11 "
 				+ "      LEFT OUTER JOIN "
 				+ "           (SELECT CONTENT_KEY, COUNT(*)CNT "
 				+ "            FROM LIKE_CONTENT "
@@ -220,7 +222,8 @@ public class Content_List_DAO {
 		String sql = "SELECT CONTENT_KEY,TITLE,EXPLANATION,T10.CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY,T20.BAN,T20.USER_NAME, NVL(CNT, 0) CNT "
 				+ "FROM (SELECT T11.CONTENT_KEY,TITLE,EXPLANATION,CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY,CNT "
 				+ "      FROM (SELECT * "
-				+ "            FROM CONTENT_LIST) T11 "
+				+ "            FROM CONTENT_LIST"
+				+ "			WHERE CONTENT_PUBLIC = 'Y') T11 "
 				+ "      LEFT OUTER JOIN "
 				+ "           (SELECT CONTENT_KEY, COUNT(*)CNT "
 				+ "            FROM PLAY_RECORD "
@@ -264,6 +267,130 @@ public class Content_List_DAO {
 		return lists;
 	}
 	
+	public ArrayList<Content_List_DTO> getAllContentMyPlay(int member_key) {
+		String sql = "SELECT CONTENT_KEY,TITLE,EXPLANATION,T10.CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY,T20.BAN,T20.USER_NAME "
+				+ "FROM (SELECT T11.CONTENT_KEY,TITLE,EXPLANATION,CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY "
+				+ "      FROM (SELECT * "
+				+ "            FROM CONTENT_LIST"
+				+ "			WHERE CONTENT_PUBLIC = 'Y') T11 "
+				+ "          ,(SELECT CONTENT_KEY  "
+				+ "            FROM PLAY_RECORD  "
+				+ "            WHERE MEMBER_KEY = ?) T12 "
+				+ "      WHERE T11.CONTENT_KEY = T12.CONTENT_KEY)T10 "
+				+ "    ,(SELECT MEMBER_KEY,BAN,USER_NAME "
+				+ "      FROM MEMBER_INFO "
+				+ "      WHERE BAN = 'N') T20 "
+				+ "WHERE T10.CREATE_USER = T20.MEMBER_KEY "
+				+ "ORDER BY CONTENT_KEY DESC ";
+		ArrayList<Content_List_DTO> lists = new ArrayList<>();
+		Content_List_DTO cl_dto = null;
+		try {
+			
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1,member_key);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				cl_dto = getContentBean(rs);
+				lists.add(cl_dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+				if (rs!=null) {
+					rs.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return lists;
+	}
+	
+	public ArrayList<Content_List_DTO> getAllContentMylike(int member_key) {
+		String sql = "SELECT CONTENT_KEY,TITLE,EXPLANATION,T10.CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY,T20.BAN,T20.USER_NAME "
+				+ "FROM (SELECT T11.CONTENT_KEY,TITLE,EXPLANATION,CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY "
+				+ "      FROM (SELECT * "
+				+ "            FROM CONTENT_LIST"
+				+ "			WHERE CONTENT_PUBLIC = 'Y') T11 "
+				+ "          ,(SELECT CONTENT_KEY  "
+				+ "            FROM LIKE_CONTENT  "
+				+ "            WHERE MEMBER_KEY = ?) T12 "
+				+ "      WHERE T11.CONTENT_KEY = T12.CONTENT_KEY)T10 "
+				+ "    ,(SELECT MEMBER_KEY,BAN,USER_NAME "
+				+ "      FROM MEMBER_INFO "
+				+ "      WHERE BAN = 'N') T20 "
+				+ "WHERE T10.CREATE_USER = T20.MEMBER_KEY "
+				+ "ORDER BY CONTENT_KEY DESC ";
+		ArrayList<Content_List_DTO> lists = new ArrayList<>();
+		Content_List_DTO cl_dto = null;
+		try {
+			
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1,member_key);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				cl_dto = getContentBean(rs);
+				lists.add(cl_dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+				if (rs!=null) {
+					rs.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return lists;
+	}
+	
+	public Content_List_DTO getContentByKey(String content_key) {
+		String sql = "SELECT * FROM CONTENT_LIST where CONTENT_KEY =?";
+		Content_List_DTO cl_dto = null;
+		int key = Integer.parseInt(content_key);
+		try {
+			
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, key);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				cl_dto = getContentQuizBean(rs);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+				if (rs!=null) {
+					rs.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return cl_dto;
+	}
+	
 	public int delete_content_quiz(String[] rowcheckArr) {
 		int cnt = -1;
 		String sql = "delete from content_list where content_key = ? ";
@@ -294,7 +421,31 @@ public class Content_List_DAO {
 		
 		return cnt;
 	}
+	
+	public int deleteContent(int content_key) {
+		int cnt = -1;
+		String sql = "delete from content_list where content_key = ? ";
 
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, content_key);
+			
+			cnt = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return cnt;
+	}
 
 	public Content_List_DTO getContentBean(ResultSet rs)throws SQLException {
 		Content_List_DTO cl_dto = new Content_List_DTO();
@@ -312,6 +463,22 @@ public class Content_List_DAO {
 		
 		return cl_dto;
 	}
+	
+	public Content_List_DTO getContentQuizBean(ResultSet rs)throws SQLException {
+		Content_List_DTO cl_dto = new Content_List_DTO();
+		
+		cl_dto.setContent_key(rs.getInt("content_key"));
+		cl_dto.setTitle(rs.getString("title"));
+		cl_dto.setExplanation(rs.getString("explanation"));
+		cl_dto.setCreate_user(rs.getInt("create_user"));
+		cl_dto.setThumbnail(rs.getString("thumbnail"));
+		cl_dto.setContent_count(rs.getInt("content_count"));
+		cl_dto.setContent_public(rs.getString("content_public"));
+		cl_dto.setCreate_day(String.valueOf(rs.getDate("create_day")));
+		
+		return cl_dto;
+	}
+	
 	
 	
 	

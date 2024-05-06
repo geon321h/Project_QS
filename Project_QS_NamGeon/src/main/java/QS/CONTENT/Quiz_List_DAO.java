@@ -78,6 +78,53 @@ private static Quiz_List_DAO instance;
 		return cnt;
 	}
 	
+	public ArrayList<Quiz_List_DTO> getQuizByKey(String content_key) {
+		String sql = "SELECT * FROM QUIZ_LIST where CONTENT_KEY =?";
+		ArrayList<Quiz_List_DTO> lists = new ArrayList<>();
+		Quiz_List_DTO ql_dto = null;
+		int key = Integer.parseInt(content_key);
+		try {
+			
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, key);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				ql_dto = getQuizBean(rs);
+				lists.add(ql_dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+				if (rs!=null) {
+					rs.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return lists;
+	}
+	
+	public Quiz_List_DTO getQuizBean(ResultSet rs)throws SQLException {
+		Quiz_List_DTO ql_dto = new Quiz_List_DTO();
+		
+		ql_dto.setQuiz_key(rs.getInt("quiz_key"));
+		ql_dto.setContent_key(rs.getInt("content_key"));
+		ql_dto.setQuestion(rs.getString("question"));
+		ql_dto.setImage(rs.getString("image"));
+		ql_dto.setExample(rs.getString("example"));
+		ql_dto.setAnswer(rs.getString("answer"));
+		ql_dto.setQuiz_type(rs.getInt("quiz_type"));
+		
+		return ql_dto;
+	}
 	
 	
 	

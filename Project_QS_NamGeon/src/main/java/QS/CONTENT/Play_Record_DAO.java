@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 public class Play_Record_DAO {
 
-private static Play_Record_DAO instance;
+	private static Play_Record_DAO instance;
 	
 	public static Play_Record_DAO getInstance() {
 		if(instance==null) {
@@ -40,19 +40,24 @@ private static Play_Record_DAO instance;
 	
 	}
 	
-	public ArrayList<Play_Record_DTO> getRecordByKey(int member,int content) {
+	public ArrayList<Play_Record_DTO> getRecordByKey(int content) {
 		ArrayList<Play_Record_DTO> lists = new ArrayList<>();
 		
-		String sql = "SELECT * "
-				+ "FROM PLAY_RECORD "
-				+ "WHERE MEMBER_KEY = ?  "
-				+ "AND CONTENT_KEY = ? ";
+		String sql = "SELECT ROWNUM RANK,MEMBER_KEY,USER_NAME,SCORE,PLAY_DAY  "
+				+ "FROM (SELECT T10.MEMBER_KEY,USER_NAME,SCORE,PLAY_DAY  "
+				+ "      FROM (SELECT MEMBER_KEY,SCORE,PLAY_DAY "
+				+ "            FROM PLAY_RECORD "
+				+ "            WHERE CONTENT_KEY = ?) T10 "
+				+ "           ,(SELECT MEMBER_KEY,USER_NAME "
+				+ "            FROM MEMBER_INFO"
+				+ "			WHERE MEMBER_KEY>0	) T20 "
+				+ "      WHERE T10.MEMBER_KEY = T20.MEMBER_KEY "
+				+ "      ORDER BY SCORE DESC , PLAY_DAY ASC) ";
 		
 		try {
 			
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, member);
-			ps.setInt(2, content);
+			ps.setInt(1, content);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
@@ -213,14 +218,42 @@ private static Play_Record_DAO instance;
 		}
 		
 	}
+	
+	public void insertRecord(Play_Record_DTO pr_dto) {
+		String sql = "INSERT INTO PLAY_RECORD (RECORD_KEY,CONTENT_KEY,MEMBER_KEY,SCORE) "
+				+ "VALUES ((SELECT NVL(MAX(RECORD_KEY),0)+1 FROM PLAY_RECORD WHERE CONTENT_KEY=?),?,?,?)";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, pr_dto.getContent_key());
+			ps.setInt(2, pr_dto.getContent_key());
+			ps.setInt(3, pr_dto.getMember_key());
+			ps.setInt(4, pr_dto.getScore());
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+	}
 
 	public Play_Record_DTO getRecordBean(ResultSet rs)throws SQLException {
 		Play_Record_DTO pr_dto = new Play_Record_DTO();
 		
-		pr_dto.setContent_key(rs.getInt("content_key"));
+		pr_dto.setRank(rs.getInt("rank"));
+		pr_dto.setUser_name(rs.getString("user_name"));
 		pr_dto.setMember_key(rs.getInt("member_key"));
 		pr_dto.setScore(rs.getInt("score"));
-		pr_dto.setPlay_day(String.valueOf(rs.getDate("play_day")));
+		pr_dto.setPlay_day(rs.getTimestamp("play_day"));
 		
 		return pr_dto;
 	}
