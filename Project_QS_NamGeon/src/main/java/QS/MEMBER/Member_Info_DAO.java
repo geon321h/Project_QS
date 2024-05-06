@@ -72,6 +72,38 @@ public class Member_Info_DAO {
 		return lists;
 	}
 	
+	public Member_Info_DTO getMemberByKey(String key) {
+		String sql = "select * from member_info where member_key = ?";
+		Member_Info_DTO mdto = null;
+		try {
+			
+			ps = conn.prepareStatement(sql);
+			int member_key = Integer.parseInt(key);
+			ps.setInt(1, member_key);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				mdto = getMemberBean(rs);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+				if (rs!=null) {
+					rs.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return mdto;
+	}
+	
 	public Member_Info_DTO snsIdCheck(String snsId) {
 		String sql = "select * from member_info where email = ? and LOGIN_TYPE is not null";
 		Member_Info_DTO mdto = null;
@@ -121,6 +153,62 @@ public class Member_Info_DAO {
 			ps.setString(4, mdto.getPhone_number());
 			ps.setString(5, mdto.getGender());
 			ps.setString(6, mdto.getLogin_type());
+			
+			cnt = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return cnt;
+	}
+
+	public int updateMember(Member_Info_DTO mdto) {
+		int cnt=-1;
+			
+		String sql = "update MEMBER_INFO set user_name=? ,phone_number=? ,password=? "
+				+ " where member_key = ?";
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, mdto.getUser_name());
+			ps.setString(2, mdto.getPhone_number());
+			ps.setString(3, mdto.getPassword());
+			ps.setInt(4, mdto.getMember_key());
+			
+			cnt = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return cnt;
+	}
+	
+	public int deleteMember(Member_Info_DTO mdto) {
+		int cnt=-1;
+			
+		String sql = "delete MEMBER_INFO where member_key = ?";
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, mdto.getMember_key());
 			
 			cnt = ps.executeUpdate();
 			
