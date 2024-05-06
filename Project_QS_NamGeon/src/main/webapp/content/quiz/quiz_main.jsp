@@ -75,7 +75,7 @@
                     	int record_count = pr_dao.contentRecordCount(cl_dto.getContent_key());
                         %>
                             <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
-                                <div class="content_info_box" onclick="">
+                                <div class="content_info_box" onclick="content_play(<%=cl_dto.getContent_key()%>)">
                                     <div class="content_image_box">
                                         <img src="<%=requestFolder+"/"+cl_dto.getThumbnail()%>">
                                     </div>

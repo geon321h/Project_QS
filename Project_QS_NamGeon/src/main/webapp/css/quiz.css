@@ -569,5 +569,309 @@ body {
     background-color: var(--bs-triadic_color);
 }
 
+/***************/
+/** 퀴즈 실행 **/
+/***************/
 
 
+.quiz_start_area h2{
+    color: #f5f5f5;
+    -webkit-text-stroke: 0.1rem #212529;
+    letter-spacing: 3px;
+    font-size: 3.5rem;
+    padding: 30px 0px;
+}
+
+.quiz_start_area .image_box {
+    overflow:hidden;
+    width: 480px;
+    height: 320px;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 80px;
+}
+
+.quiz_start_area .image_box img{
+    border: 1px solid #212529;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.quiz_start_area .submit_btn {
+    font-family: 'MaplestoryOTFBold';
+    border: 0;
+    border-radius: 10px;
+    width: 200px;
+    height: 80px;
+    background-color: var(--bs-sub_color);
+    color: white;
+    font-size: 20px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.quiz_area h2{
+    color: #f5f5f5;
+    -webkit-text-stroke: 0.1rem #212529;
+    letter-spacing: 3px;
+    font-size: 3.5rem;
+    padding: 30px 0px;
+}
+
+.quiz_area .option_box{
+    font-family: 'MaplestoryOTFBold_L';
+    display: inline-block;
+    min-width: 400px;
+    margin: 0 auto;
+    font-size: 2rem;
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 80px;
+}
+
+.quiz_area .option_box span {
+    vertical-align: 5px;
+}
+
+.quiz_area .blank_box {
+    padding: 200px 0px;
+}
+
+.quiz_area .answer_input {
+    border-radius: 10px;
+    width: 400px;
+    height: 60px;
+    padding: 8px 12px;
+    border: 0;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.quiz_area .answer_input:focus {
+    outline: 2px solid var(--bs-sub_color);
+}
+
+.quiz_area .answer_btn{
+    font-family: 'MaplestoryOTFBold';
+    font-size: 1.1rem;
+    width: 100px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: var(--bs-sub_color);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    color: white;
+    border: 0;
+    margin-left: 20px;
+}
+
+.quiz_area .answer_text {
+    color: white;
+    font-size: 2rem;
+    font-family: 'MaplestoryOTFBold_L';
+    padding-left: 20px ;
+}
+
+.quiz_area .image_box {
+    overflow:hidden;
+    width: 480px;
+    height: 320px;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 80px;
+}
+
+.quiz_area .image_box img{
+    border: 1px solid #212529;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.quiz_area .true_quiz {
+    width: 600px;
+    height: 360px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.quiz_area .true_quiz span{
+    position: absolute;
+    left: 40%;
+    top: 35%;
+    color: var(--bs-analogous_color);
+    font-size: 4rem;
+    font-family: 'MaplestoryOTFBold';
+}
+
+.quiz_area .true_img_lg {
+    position: absolute;
+    top: 5%;
+    right: 15%;
+}
+
+.quiz_area .true_img_sm {
+    width: 88px;
+    height: 88px;
+    position: absolute;
+    top: 55%;
+    left: 15%;
+}
+
+.quiz_area .flase_quiz {
+    width: 600px;
+    height: 300px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.quiz_area .flase_quiz span{
+    position: absolute;
+    left: 40%;
+    top: 35%;
+    color: var(--bs-sub_color);
+    font-size: 4rem;
+    font-family: 'MaplestoryOTFBold';
+}
+
+.quiz_area .flase_img {
+    width: 88px;
+    height: 88px;
+    position: absolute;
+    top: 10%;
+    left: 42%;
+}
+
+.result_area {
+    width: 850px;
+    margin: 0 auto;
+}
+
+.result_area > div{
+    background-color: white;
+    border-radius: 20px;
+    padding: 50px 20px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
+}
+
+.result_area .rank_table{
+    margin: 0 auto;
+    width: 700px;
+    border-radius: 10px;
+    border-collapse: collapse;
+    border-style: hidden;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 0 1px var(--bs-sub_color);
+    overflow: hidden;
+}
+.result_area .rank_table tr:first-child{
+    background-color: var(--bs-sub_color);
+}
+
+.result_area .rank_table tr:first-child td {
+    padding: 14px 18px;
+    color: white;
+}
+
+.result_area .rank_table .info_record td {
+    padding: 10px 18px;
+}
+
+.result_area .rank_table .info_record:nth-child(-n+4) td{
+    background-color: #ededed;
+}
+
+.result_area .rank_table .not_record {
+    padding: 50px;
+}
+
+.result_area .first_record {
+    text-align: left;
+}
+
+.result_area .first_record img{
+    margin-left: 12px;
+}
+
+.result_area .comment_table{
+    margin: 0 auto;
+    width: 700px;
+    border-radius: 10px;
+    border-collapse: collapse;
+    border-style: hidden;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 0 1px var(--bs-analogous_color);
+    overflow: hidden;
+}
+
+.result_area .comment_table tr:first-child{
+    background-color: var(--bs-analogous_color);
+}
+
+.result_area .comment_table tr:first-child td {
+    padding: 14px 18px;
+    color: white;
+}
+
+.result_area .comment_table tr:first-child .comment_input {
+    width: 550px;
+    height: 60px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-family: 'NanumSquare_R';
+    font-weight: 300;
+    padding: 14px 18px;
+    font-size: 1rem;
+    line-height: 30px;
+}
+
+.result_area .comment_count {
+    padding-left: 50px;
+    font-family: 'NanumSquare_EB';
+    font-size: 1.2rem;
+}
+
+.result_area .comment_table tr:first-child .comment_btn {
+    width: 100px;
+    height: 60px;
+    float: right;
+    border: 1px solid #212529;
+    border-radius: 10px;
+    background-color: white;
+    color: #212529;
+    font-family: 'NanumSquare_B';
+}
+
+.result_area .comment_table tr:first-child .comment_btn:hover {
+    background-color: #999;
+}
+
+.result_area .comment_table .not_comment {
+    padding: 50px;
+}
+
+.result_area .comment_table .comment_list td {
+    padding: 10px 18px;
+}
+
+.result_area .comment_table .ct_day{
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.result_area .comment_table .ct_text{
+    font-size: 1rem;
+    font-family: 'NanumSquare_R';
+}
+
+#canvas {
+    z-index: 10;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    transform: scale(1.1);
+}

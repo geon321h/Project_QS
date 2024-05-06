@@ -256,7 +256,6 @@ function create_quiz_list(last_question,last_type){
 
 // 퀴즈 수정하기 //
 function update_quiz_list(number,type,question,answer,example,image){
-   console.log(type);
    $('#quiz_delete').click();
    $('input[name="example"]').val("");
    if(type==1){
@@ -352,5 +351,40 @@ function like_btn(like,content_key,member_key) {
 function settingChange(){
    
    $('#setting_form').submit();
+
+}
+
+function content_play(content_key){
+
+   location.href="quiz_play.jsp?content_key="+content_key;
+
+}
+
+let timeoutId_quiz;
+const vibration_quiz = (target) => {
+    target.classList.add("vibration");
+    setTimeout(function() {
+      target.classList.remove("vibration");
+    }, 400);
+    timeoutId_quiz = setInterval(function() {
+        target.classList.add("vibration");
+        setTimeout(function() {
+          target.classList.remove("vibration");
+        }, 400);
+    }, 1500);
+
+}
+
+const vibration_off_quiz = (target) => {
+    clearTimeout(timeoutId_quiz);
+    target.classList.remove("vibration");
+}
+
+function deleteComment(content_key,num,comment_key) {
+   let comment_check = confirm("댓글을 삭제하시겠습니까?");
+
+   if(comment_check){
+      location.href="quiz_comment_delete.jsp?content_key="+content_key+"&num="+num+"&comment_key="+comment_key;
+   }
 
 }
