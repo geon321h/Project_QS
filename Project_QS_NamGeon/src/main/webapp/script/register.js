@@ -115,7 +115,7 @@ function register_check() {
         blank_pass = false;
     }
 
-    let regex_passwd = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/
+    let regex_passwd = /^(?=.*[a-zA-Z])(?=.*[~!@#$%^*+=-])(?=.*[0-9]).{8,16}$/
     let pw = $('input[name="password"]').val();
 
     if( $('input[name="password"]').val()==""){
@@ -126,7 +126,7 @@ function register_check() {
         $('input[name="password_re"]').focus();
         $('#passwd_msg').html("비밀번호 확인을 해주세요.");
         blank_pass = true; 
-    }else if(pw.match(regex_passwd)==null){
+    }else if(regex_passwd.test(pw)==false){
         $('input[name="password"]').focus();
         $('#passwd_msg').html("비밀번호를 올바른 형식으로 입력해주세요.");
         return false;
