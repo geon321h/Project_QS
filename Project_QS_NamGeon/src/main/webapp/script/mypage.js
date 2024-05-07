@@ -1,6 +1,17 @@
 let name_pass = false;
 let passwd_check_pass = false;
 $(function(){
+       
+   $(".like_add_btn").on("click",function(event){
+    event.stopPropagation();
+    });
+   $(".update_my_btn").on("click",function(event){
+    event.stopPropagation();
+    });
+   $(".delete_my_btn").on("click",function(event){
+    event.stopPropagation();
+    });
+
     /* 이름 */ 
     $('input[name="user_name"]').keydown(function(){
         $('#name_msg').empty();
@@ -214,4 +225,20 @@ function like_btn(like,content_key,member_key) {
         });
     }
 
+ }
+
+ function update_content(content_key,title){
+
+    let update_check = confirm(`컨텐츠 (${title})를/을 수정하시겠어요?`);
+
+    if(update_check){
+        location.href="../quiz/quiz_update.jsp?content_key="+content_key+"&start=start";
+    }
+
+ }
+
+ function content_play(content_key){
+
+    location.href="../quiz/quiz_play.jsp?content_key="+content_key;
+ 
  }

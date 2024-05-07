@@ -4,8 +4,12 @@
     <%
     
     String sort = request.getParameter("sort");
+    String type = request.getParameter("type");
     if(sort==null){
 		sort = "";        	
+    }
+    if(type==null){
+    	type = "";        	
     }
     %>
     
@@ -25,7 +29,11 @@
         </ul>
         <hr >
         <h1 class="mt-4 pt-2">
-            <i class="bi bi-send-fill pe-3"></i><a>문의하기</a>
+            <i class="bi bi-send-fill pe-3"></i><a href="mypage_questions.jsp?type=add">문의하기</a>
         </h1>
+        <ul class="pb-2">
+            <li><a href="mypage_questions.jsp?type=list" <%if(type.equals("list")){%> style="color:#222" <%}%>>문의 내역</a></li>
+            <li><a href="mypage_questions.jsp?type=add" <%if(type.equals("add")){%> style="color:#222" <%}%>>문의 하기</a></li>
+        </ul>
     </div>
 </aside>
