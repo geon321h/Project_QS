@@ -34,7 +34,7 @@
                 	%>
 					<h4>내 퀴즈</h4>                	
                 	<%
-                	lists = cl_dao.getAllContentRecent("");
+                	lists = cl_dao.getAllMyContent(Integer.parseInt(member_key));
                 }else if(sort.equals("like")){
                 	%>
 					<h4>좋아요한 퀴즈</h4>                	
@@ -47,9 +47,10 @@
                 	lists = cl_dao.getAllContentMyPlay(Integer.parseInt(member_key));
                 }
                 %>
+                <hr>
 				<div class="row g-5 content_box">
                 <%
-
+				if(lists.size()>0){
                     for(Content_List_DTO cl_dto : lists){	
                     	int like_count = pr_dao.contentLikeCount(cl_dto.getContent_key());
                     	int record_count = pr_dao.contentRecordCount(cl_dto.getContent_key());
@@ -63,10 +64,10 @@
                                         	%>
 											<div class="my_option">
 												<button class="update_content">
-													<i class="bi bi-pencil-square"></i>
+													<i class="bi bi-pencil-square update_my_btn" onclick="update_content(<%=cl_dto.getContent_key()%>,'<%=cl_dto.getTitle()%>')"></i>
 												</button>
 												<br>
-												<button class="delete_content" onclick="delete_content(<%=cl_dto.getContent_key()%>,'<%=cl_dto.getTitle()%>')">
+												<button class="delete_content delete_my_btn" onclick="delete_content(<%=cl_dto.getContent_key()%>,'<%=cl_dto.getTitle()%>')">
 													<i class="bi bi-x-square"></i>
 												</button>
 											</div>
@@ -92,12 +93,12 @@
                                         }else{
 	                                        if(pr_dao.contentLikeCheck(Integer.parseInt(member_key),cl_dto.getContent_key())){
 	                                        	%>
-	                                            <i class="bi bi-suit-heart-fill" onclick="like_btn(this,<%=cl_dto.getContent_key()%>,<%=member_key%>)"></i>
+	                                            <i class="bi bi-suit-heart-fill like_add_btn" onclick="like_btn(this,<%=cl_dto.getContent_key()%>,<%=member_key%>)"></i>
 	                                            <span class="like_count"><%=like_count%></span>
 	                                        	<%
 	                                        }else{
 	                                        	%>
-	                                            <i class="bi bi-suit-heart" onclick="like_btn(this,<%=cl_dto.getContent_key()%>,<%=member_key%>)"></i>
+	                                            <i class="bi bi-suit-heart like_add_btn" onclick="like_btn(this,<%=cl_dto.getContent_key()%>,<%=member_key%>)"></i>
 	                                            <span class="like_count"><%=like_count%></span>
 	                                        	<%
 	                                        }
@@ -111,6 +112,21 @@
                             </div>
                         <%
                     }
+				}else{
+					if(sort.equals("my")){
+	                	%>
+						<p>내가 생성한 퀴즈가 없습니다. 지금 생성해보세요!</p>                	
+	                	<%
+	                }else if(sort.equals("like")){
+	                	%>
+						<p>좋아요한 퀴즈가 없습니다.</p>                	
+	                	<%
+	                }else{
+	                	%>
+						<p>참여한 퀴즈가 없습니다.</p>                	
+	                	<%
+	                }
+				}
                 %>                
             </div>
 			</div>

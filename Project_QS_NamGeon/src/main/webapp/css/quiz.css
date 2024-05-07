@@ -851,6 +851,7 @@ body {
 }
 
 .result_area .comment_table .not_comment {
+    text-align: center;
     padding: 50px;
 }
 

@@ -91,18 +91,18 @@
                                         <%
                                         if(member_key==null){
                                         	%>
-                                            <i class="bi bi-suit-heart" onclick="login_check()"></i>
+                                            <i class="bi bi-suit-heart like_add_btn" onclick="login_check()"></i>
                                             <span class="like_count"><%=like_count%></span>
                                         	<%
                                         }else{
 	                                        if(pr_dao.contentLikeCheck(Integer.parseInt(member_key),cl_dto.getContent_key())){
 	                                        	%>
-	                                            <i class="bi bi-suit-heart-fill" onclick="like_btn(this,<%=cl_dto.getContent_key()%>,<%=member_key%>)"></i>
+	                                            <i class="bi bi-suit-heart-fill like_add_btn" onclick="like_btn(this,<%=cl_dto.getContent_key()%>,<%=member_key%>)"></i>
 	                                            <span class="like_count"><%=like_count%></span>
 	                                        	<%
 	                                        }else{
 	                                        	%>
-	                                            <i class="bi bi-suit-heart" onclick="like_btn(this,<%=cl_dto.getContent_key()%>,<%=member_key%>)"></i>
+	                                            <i class="bi bi-suit-heart like_add_btn" onclick="like_btn(this,<%=cl_dto.getContent_key()%>,<%=member_key%>)"></i>
 	                                            <span class="like_count"><%=like_count%></span>
 	                                        	<%
 	                                        }

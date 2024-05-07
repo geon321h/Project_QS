@@ -23,12 +23,17 @@
 	    for(String str : exampleArr){
 		    example += str+" ";
 	    }
-	    System.out.println("question:"+multi.getParameter("question"));
-	    System.out.println("example:"+example);	
-	    System.out.println("image:"+multi.getOriginalFileName("image"));
-	    System.out.println("answer:"+multi.getParameter("answer"));
+// 	    System.out.println("question:"+multi.getParameter("question"));
+// 	    System.out.println("example:"+example);	
+// 	    System.out.println("image:"+multi.getOriginalFileName("image"));
+// 	    System.out.println("answer:"+multi.getParameter("answer"));
 	    
-	    content_quiz.saveQuizData(multi);
-	    response.sendRedirect("quiz_create.jsp?save=save");
+	    if(multi.getParameter("content_key")!=null){
+		    content_quiz.saveQuizData(multi);
+		    response.sendRedirect("quiz_update.jsp?content_key="+multi.getParameter("content_key"));
+	    }else{
+		    content_quiz.saveQuizData(multi);
+		    response.sendRedirect("quiz_create.jsp?save=save");
+	    }
 	
 	%>

@@ -78,6 +78,30 @@ private static Quiz_List_DAO instance;
 		return cnt;
 	}
 	
+	public int updateQuiz(ArrayList<Quiz_List_DTO> quiz_lists, int content_key) {
+		int cnt = -1;
+		String sql = "DELETE QUIZ_LIST WHERE CONTENT_KEY =?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, content_key);
+			ps.executeUpdate();
+			
+			cnt = insertQuiz(quiz_lists,content_key);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return cnt;
+	}
+	
 	public ArrayList<Quiz_List_DTO> getQuizByKey(String content_key) {
 		String sql = "SELECT * FROM QUIZ_LIST where CONTENT_KEY =?";
 		ArrayList<Quiz_List_DTO> lists = new ArrayList<>();

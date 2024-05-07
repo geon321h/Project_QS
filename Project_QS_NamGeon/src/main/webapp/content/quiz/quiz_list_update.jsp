@@ -22,7 +22,12 @@
 	    MultipartRequest multi = 
 	    		new MultipartRequest(request,configFolder,maxSize,encoding,new DefaultFileRenamePolicy());
 	
-	    content_quiz.updateQuizData(multi,Integer.parseInt(number));
-	    response.sendRedirect("quiz_create.jsp?save=save");
-	
+	    if(multi.getParameter("content_key")!=null){
+	    	content_quiz.updateQuizData(multi,Integer.parseInt(number));
+		    response.sendRedirect("quiz_update.jsp?content_key="+multi.getParameter("content_key"));
+	    }else{
+		    content_quiz.updateQuizData(multi,Integer.parseInt(number));
+		    response.sendRedirect("quiz_create.jsp?save=save");
+	    }
+	    
 	%>

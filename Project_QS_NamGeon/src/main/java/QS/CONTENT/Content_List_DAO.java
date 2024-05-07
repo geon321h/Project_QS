@@ -88,6 +88,37 @@ public class Content_List_DAO {
 		return content_key;
 	}
 	
+	public int updateContent(Content_List_DTO cl_dto) {
+		int cnt = -1;
+		String sql = "UPDATE CONTENT_LIST  "
+				+ "SET TITLE=?,EXPLANATION=?,THUMBNAIL=?,CONTENT_COUNT=?,CONTENT_PUBLIC=? "
+				+ "WHERE CONTENT_KEY = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, cl_dto.getTitle());
+			ps.setString(2, cl_dto.getExplanation());
+			ps.setString(3, cl_dto.getThumbnail());
+			ps.setInt(4, cl_dto.getContent_count());
+			ps.setString(5, cl_dto.getContent_public());
+			ps.setInt(6, cl_dto.getContent_key());
+			cnt = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return cnt;
+	}
+	
 	public ArrayList<Content_List_DTO> getAllContent() {
 		String sql = "SELECT CONTENT_KEY,TITLE,EXPLANATION,T10.CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY,T20.BAN,T20.USER_NAME "
 				+ "FROM (SELECT CONTENT_KEY,TITLE,EXPLANATION,CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY "
@@ -101,6 +132,46 @@ public class Content_List_DAO {
 		try {
 			
 			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				cl_dto = getContentBean(rs);
+				lists.add(cl_dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (ps!=null) {
+					ps.close();
+				}
+				if (rs!=null) {
+					rs.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		return lists;
+	}
+	
+	public ArrayList<Content_List_DTO> getAllMyContent(int member_key) {
+		String sql = "SELECT CONTENT_KEY,TITLE,EXPLANATION,T10.CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY,T20.BAN,T20.USER_NAME "
+				+ "FROM (SELECT CONTENT_KEY,TITLE,EXPLANATION,CREATE_USER,THUMBNAIL,CONTENT_COUNT,CONTENT_PUBLIC,CREATE_DAY "
+				+ "      FROM CONTENT_LIST)T10 "
+				+ "    ,(SELECT MEMBER_KEY,BAN,USER_NAME "
+				+ "      FROM MEMBER_INFO"
+				+ "		WHERE MEMBER_KEY = ?) T20 "
+				+ "WHERE T10.CREATE_USER = T20.MEMBER_KEY "
+				+ "ORDER BY CONTENT_KEY";
+		ArrayList<Content_List_DTO> lists = new ArrayList<>();
+		Content_List_DTO cl_dto = null;
+		try {
+			
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, member_key);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
@@ -275,7 +346,8 @@ public class Content_List_DAO {
 				+ "			WHERE CONTENT_PUBLIC = 'Y') T11 "
 				+ "          ,(SELECT CONTENT_KEY  "
 				+ "            FROM PLAY_RECORD  "
-				+ "            WHERE MEMBER_KEY = ?) T12 "
+				+ "            WHERE MEMBER_KEY = ?"
+				+ "			GROUP BY CONTENT_KEY) T12 "
 				+ "      WHERE T11.CONTENT_KEY = T12.CONTENT_KEY)T10 "
 				+ "    ,(SELECT MEMBER_KEY,BAN,USER_NAME "
 				+ "      FROM MEMBER_INFO "

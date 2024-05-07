@@ -31,8 +31,14 @@
 	    System.out.println("thumbnail:"+multi.getOriginalFileName("thumbnail"));
 	    System.out.println("content_public:"+multi.getParameter("content_public")); */
 	    
-	    content_quiz.saveContentData(multi);
-	    response.sendRedirect("quiz_create.jsp?save=save");
+	    if(multi.getParameter("content_key")!=null){
+		    content_quiz.saveContentData(multi);
+		    response.sendRedirect("quiz_update.jsp?content_key="+multi.getParameter("content_key"));
+	    }else{
+		    content_quiz.saveContentData(multi);
+		    response.sendRedirect("quiz_create.jsp?save=save");
+	    }
+	    
 	
 	%>
 	

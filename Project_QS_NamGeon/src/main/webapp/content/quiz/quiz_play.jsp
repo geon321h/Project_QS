@@ -28,9 +28,9 @@
         
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         int quizNum = 0;
-        if(content_key==null){
+		/*if(content_key==null){
         	content_key = "41";        	
-        }
+        } */
         if(num!=null){
         	quizNum = Integer.parseInt(num);
         }

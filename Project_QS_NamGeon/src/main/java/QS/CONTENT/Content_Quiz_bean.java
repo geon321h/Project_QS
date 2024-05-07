@@ -104,4 +104,9 @@ public class Content_Quiz_bean {
 		return quiz_list;
 	}
 	
+	public void settingContent(Content_List_DTO my_cl ,ArrayList<Quiz_List_DTO> my_lists) {
+		cl_dto = my_cl;
+		quiz_list = my_lists;
+	}
+	
 }
