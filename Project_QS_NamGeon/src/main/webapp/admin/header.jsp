@@ -49,7 +49,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 " id="mainNav_admin">
     <div class="container px-0 ">
-        <a class="navbar-brand" href="<%=request.getContextPath()%>/admin/main.jsp">LOGO</a>
+        <a class="navbar-brand" href="<%=request.getContextPath()%>/admin/main.jsp"><img src="<%=request.getContextPath()%>/assets/logo/logo_black.png" width="150px" alt=""></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse " id="navbarResponsive">
             <ul class="navbar-nav ms-5 my-2 my-lg-0">
