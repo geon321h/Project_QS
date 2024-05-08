@@ -242,3 +242,44 @@ function like_btn(like,content_key,member_key) {
     location.href="../quiz/quiz_play.jsp?content_key="+content_key;
  
  }
+
+ function que_check(){
+    if($('input[name="que_title"]').val()==""){
+        $('input[name="que_title"]').focus();
+        alert('문의명을 입력해주세요.');
+        return false;
+    }else if($('textarea[name="que_content"]').val()==""){
+        $('textarea[name="que_content"]').focus();
+        alert('문의내용을 입력해주세요.');
+        return false;
+    }
+
+ }
+
+ function que_update_msg(){
+    alert('답변이 완료된 문의는 변경할 수 없습니다.');
+    return false;
+ }
+
+function delete_question(member_key,question_key,title,pageNum,type){
+    let delete_check = confirm(`문의 "${title}"을 삭제하시겠습니까?`);
+    if(delete_check){
+       location.href=`mypage_que_delete_Proc.jsp?member_key=${member_key}&question_key=${question_key}&pageNum=${pageNum}&queType=${type}`;
+    }
+ }
+
+ $(function(){
+    $(".bi-trash3-fill").on("click",function(event){
+        event.stopPropagation();
+     });
+ })
+
+ function view_question(member_key,question_key,pageNum,type){
+    location.href=`mypage_view.jsp?member_key=${member_key}&question_key=${question_key}&pageNum=${pageNum}&queType=${type}`;
+ }
+
+
+ function settingChange() {
+    let queType = $('.que_option').val();
+    location.href=`mypage_questions.jsp?type=list&queType=${queType}`;
+ }
