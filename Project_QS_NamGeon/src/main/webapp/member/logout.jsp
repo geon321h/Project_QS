@@ -24,10 +24,7 @@
 	<%
     
 	session.invalidate();
-	String url = request.getParameter("url");
-	if(url == null){
-		url = request.getContextPath()+"/main.jsp";
-	}
+	String url  = request.getContextPath()+"/main.jsp";
     response.sendRedirect(url);
     %>
 

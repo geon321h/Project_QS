@@ -6,6 +6,7 @@
     	
     	String email = (String)session.getAttribute("email");
     	String member_key = (String)session.getAttribute("member_key");
+    	String content_key = request.getParameter("content_key");
     	//System.out.println("member_key: "+member_key);
     	
     	
@@ -44,7 +45,11 @@
         function login_check() {
             if("<%=email%>"=="null"){
                 alert("로그인이 필요한 컨텐츠입니다.");
-                location.href = "<%=request.getContextPath()%>/member/login.jsp?url=<%=request.getRequestURI()%>";
+                if("content_key"!="null"){
+	                location.href = "<%=request.getContextPath()%>/member/login.jsp?url=<%=request.getRequestURI()%>&content_key=<%=content_key%>";
+                }else{
+	                location.href = "<%=request.getContextPath()%>/member/login.jsp?url=<%=request.getRequestURI()%>";
+                }
             }else{
                 popOpen();
             }

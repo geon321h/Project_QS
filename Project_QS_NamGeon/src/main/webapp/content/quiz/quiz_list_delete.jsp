@@ -12,7 +12,7 @@
 	    
 	    if(content_key!=null){
 		    content_quiz.deleteQuiz_List(Integer.parseInt(number));
-		    response.sendRedirect("quiz_update.jsp?content_key="+multi.getParameter("content_key"));
+		    response.sendRedirect("quiz_update.jsp?content_key="+content_key);
 	    }else{
 		    content_quiz.deleteQuiz_List(Integer.parseInt(number));
 		    response.sendRedirect("quiz_create.jsp?save=save");

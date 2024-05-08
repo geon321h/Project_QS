@@ -5,6 +5,7 @@
     	request.setCharacterEncoding("UTF-8");
     	session.invalidate();
     	String url = request.getParameter("url");
+    	String content_key = request.getParameter("content_key");
     	if(url == null){
     		url = request.getContextPath()+"/main.jsp";
     	}
@@ -48,7 +49,17 @@
     <div class="signin container text-center">
         <div class="signin_area">
             <a href="../main.html" id="logo"><img src="../assets/logo/logo_main.png" width="50%" alt=""></a>
-            <form name="login_form" action="login_Proc.jsp?url=<%=url%>" method="post" class="m-auto">
+            <%
+            if(content_key!=null){
+            	%>
+	            <form name="login_form" action="login_Proc.jsp?url=<%=url%>&content_key=<%=content_key%>" method="post" class="m-auto">
+            	<%
+            }else{
+            	%>
+	            <form name="login_form" action="login_Proc.jsp?url=<%=url%>" method="post" class="m-auto">
+            	<%
+            }
+            %>
                 <div class="login_wrap m-auto">
                     <div class="col_split">
                         <input type="text" name="user_email" placeholder="이메일">

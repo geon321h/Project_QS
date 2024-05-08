@@ -11,6 +11,7 @@
     	String url = request.getParameter("url");
 //      	System.out.println("url: "+url);
     	String access_token = request.getParameter("access_token");
+    	String content_key = request.getParameter("content_key");
 // 	    System.out.println("access_token: "+access_token);
     	String msg = null;
     	
@@ -85,9 +86,15 @@
      		<%
      	}
 	  	if(url != null){
-	 		%>
-	 			location.href="<%=url%>";
-	 		<%
+	  		if(content_key==null){
+		 		%>
+		 			location.href="<%=url%>";
+		 		<%
+	  		}else{
+		 		%>
+		 			location.href="<%=url%>?content_key=<%=content_key%>";
+		 		<%
+	  		}
 	 	}
      %>
 	</Script>
