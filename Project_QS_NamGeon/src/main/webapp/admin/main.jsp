@@ -5,3 +5,7 @@
     <div class="container" id="content">
     </div>
     <jsp:include page="../include/footer.jsp"/>
+    
+    <%
+    response.sendRedirect(request.getContextPath()+"/admin/member_admin.jsp");
+    %>

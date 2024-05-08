@@ -17,7 +17,7 @@
 <head>
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuestionS:Quiz and Survey</title>
+    <title>QuestionS</title>
     
 <!--  css 부트스트랩-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
@@ -49,14 +49,14 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 " id="mainNav_admin">
     <div class="container px-0 ">
-        <a class="navbar-brand" href="<%=request.getContextPath()%>/admin/main.jsp"><img src="<%=request.getContextPath()%>/assets/logo/logo_black.png" width="150px" alt=""></a>
+        <a class="navbar-brand" href=""><img src="<%=request.getContextPath()%>/assets/logo/logo_black.png" width="150px" alt=""></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse " id="navbarResponsive">
             <ul class="navbar-nav ms-5 my-2 my-lg-0">
                 <li class="nav-item mx-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/member_admin.jsp">멤버관리</a></li>
                 <li class="nav-item mx-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/quiz_admin.jsp">퀴즈관리</a></li>
                 <!-- <li class="nav-item mx-3"><a class="nav-link" href="#">설문조사 관리</a></li> -->
-                <li class="nav-item mx-3"><a class="nav-link" href="#">문의 관리</a></li>
+                <li class="nav-item mx-3"><a class="nav-link" href="<%=request.getContextPath()%>/admin/question_admin.jsp">문의 관리</a></li>
                 <li class="nav-item mx-3"><a class="nav-link" href="<%=request.getContextPath()%>/main.jsp">사용자 홈</a></li>
             </ul>
             <ul class="nav nav-pills ms-auto">
